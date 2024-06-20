@@ -3,5 +3,5 @@ export const config = {
   port: 3306,
   user: "root",
   password: "",
-  database: "cac-nodejs",
+  database: "tif-nodejs",
 };
