@@ -1,6 +1,4 @@
-const productsContainer = document.getElementById('products-container')
-
-
+const productsContainer = document.getElementById("products-container");
 
 const template = (data) => `
   <div class="row g-0">
@@ -11,25 +9,23 @@ const template = (data) => `
       <div class="card-body">
         <h5 class="card-title">${data.name}</h5>
         <p class="card-text">$${data.price.toFixed(2)}</p>
-        <p class="card-text"><small class="text-muted">Código: ${data.id} - Stock: ${data.stock} unidades</small></p>
+        <p class="card-text"><small class="text-muted">Código: ${
+          data.id
+        } - Stock: ${data.stock} unidades</small></p>
       </div>
     </div>
-  </div>`
-
-
+  </div>`;
 
 const showProducts = (products) => {
   for (let product of products) {
-    const div = document.createElement('div')
-    div.className = 'card my-2'
-    div.innerHTML = template(product)
-    productsContainer.append(div)
+    const div = document.createElement("div");
+    div.className = "card my-2";
+    div.innerHTML = template(product);
+    productsContainer.append(div);
   }
-}
+};
 
-
-
-fetch('./products')
-  .then(res => res.json())
-  .then(res => showProducts(res))
-  .catch(err => console.log(err))
+fetch("./products")
+  .then((res) => res.json())
+  .then((res) => showProducts(res))
+  .catch((err) => console.log(err));

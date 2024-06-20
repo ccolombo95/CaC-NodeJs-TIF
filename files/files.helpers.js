@@ -1,20 +1,23 @@
-const supportedTypes = ['image/jpeg', 'image/bmp', 'image/gif', 'image/jpg']
+const supportedTypes = [
+  "image/jpeg",
+  "image/bmp",
+  "image/gif",
+  "image/jpg",
+  "image/png",
+];
 
 const checkSupportedTypes = (filetype) => {
+  let isSupported = false;
 
-    let isSupported = true
+  for (let supportedType of supportedTypes)
+    if (filetype === supportedType) {
+      isSupported = true;
+      break;
+    }
 
-    for (let supportedType of supportedTypes)
-        if (filetype === supportedType) {
-            isSupported = false
-            break
-        }
-
-    return isSupported
-}
-
-
+  return isSupported;
+};
 
 export const helpers = {
-    checkSupportedTypes
-}
+  checkSupportedTypes,
+};
