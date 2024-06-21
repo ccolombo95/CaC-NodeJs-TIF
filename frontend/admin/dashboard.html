@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./../css/style-admin.css" />
+    <link rel="icon" type="image/png" href="./../assets/favicon.png" />
+
+    <title>Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Archivo:ital,wght@0,100..900;1,100..900&family=Courgette&family=Tangerine:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav id="NavBarAdminContainer">
+        <div id="AsideBarContainer">
+          <span id="NavBarAdminMenu" onclick="toggleMenu()">
+            <span class="Line1Menu"></span>
+            <span class="Line2Menu"></span>
+            <span class="Line3Menu"></span>
+          </span>
+
+          <ul id="Links">
+            <li><a href="./movies.html">Películas</a></li>
+            <li><a href="./sales.html">Ventas</a></li>
+            <li><a href="./categories.html">Categorias</a></li>
+          </ul>
+        </div>
+
+        <a href="./../index.html">
+          <img id="NavBarAdminlogo" src="./../assets/logo.png" alt="Logo" />
+        </a>
+
+        <div id="UserContainer">
+          <div class="User">
+            <p>User</p>
+            <p class="flecha" onclick="toggleMenuUser()">&#94;</p>
+          </div>
+          <ul id="NavBarAdminList">
+            <li class="NavBarAdminListItem">
+              <a href="./../index.html" class="NavBarAdminLinks"
+                >CERRAR SESIÓN</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <div id="BodyContainerAdmin">
+      <div class="BodyContainerSection">
+        <h1>Dashboard</h1>
+      </div>
+    </div>
+    <script src="./../js/main.js"></script>
+  </body>
+</html>

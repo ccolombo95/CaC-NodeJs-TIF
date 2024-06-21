@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./../css/style-admin.css" />
+    <link rel="icon" type="image/png" href="./../assets/favicon.png" />
+
+    <title>Categorías</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Archivo:ital,wght@0,100..900;1,100..900&family=Courgette&family=Tangerine:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav id="NavBarAdminContainer">
+        <div id="AsideBarContainer">
+          <span id="NavBarAdminMenu" onclick="toggleMenu()">
+            <span class="Line1Menu"></span>
+            <span class="Line2Menu"></span>
+            <span class="Line3Menu"></span>
+          </span>
+
+          <ul id="Links">
+            <li><a href="./movies.html">Películas</a></li>
+            <li><a href="./sales.html">Ventas</a></li>
+            <li><a href="./categories.html">Categorias</a></li>
+          </ul>
+        </div>
+
+        <a href="./../index.html">
+          <img id="NavBarAdminlogo" src="./../assets/logo.png" alt="Logo" />
+        </a>
+
+        <div id="UserContainer">
+          <div class="User">
+            <p>User</p>
+            <p class="flecha" onclick="toggleMenuUser()">&#94;</p>
+          </div>
+          <ul id="NavBarAdminList">
+            <li class="NavBarAdminListItem">
+              <a href="./../index.html" class="NavBarAdminLinks"
+                >CERRAR SESIÓN</a
+              >
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <div id="BodyContainerAdmin">
+      <div class="BodyContainerSection">
+        <h1>Categorías</h1>
+        <div id="TableFunctions">
+          <input
+            type="text"
+            placeholder="Buscar"
+            id="buscador"
+            onkeyup="buscarCandidatos()"
+          />
+          <a href="./create-category.html" id="ButtonAdmin">Nuevo</a>
+        </div>
+
+        <table id="TableAdmin">
+          <thead id="header">
+            <tr>
+              <th>Categoria</th>
+              <th># productos</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Macarrones y alfajores</td>
+              <td>20</td>
+              <td><a href="#" class="DeleteX">X</a></td>
+            </tr>
+            <tr>
+              <td>Tortas y tartas</td>
+              <td>5</td>
+              <td><a href="#" class="DeleteX">X</a></td>
+            </tr>
+            <tr>
+              <td>Budines</td>
+              <td>2</td>
+              <td><a href="#" class="DeleteX">X</a></td>
+            </tr>
+            <tr>
+              <td>Cupcakes</td>
+              <td>10</td>
+              <td><a href="#" class="DeleteX">X</a></td>
+            </tr>
+            <!-- Añadir más filas según sea necesario -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <script src="./../js/main.js"></script>
+  </body>
+</html>

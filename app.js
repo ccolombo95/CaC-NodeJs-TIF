@@ -1,6 +1,7 @@
 import express from "express";
 import usersRoutes from "./users/users.routes.js";
 import productsRoutes from "./products/products.routes.js";
+import moviesRoutes from "./movies/movies.routes.js";
 import { middlewares } from "./middlewares/index.js";
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/users", usersRoutes);
 app.use("/products", productsRoutes);
+app.use("/movies", moviesRoutes);
 
 app.use(middlewares.errors.errorController);
 

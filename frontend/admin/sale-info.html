@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./../css/style-admin.css" />
+    <link rel="icon" type="image/png" href="./../assets/favicon.png" />
+
+    <title>Información</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Archivo:ital,wght@0,100..900;1,100..900&family=Courgette&family=Tangerine:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/png" href="/a"./assets/favicon.png"/>
+  </head>
+  <body>
+    <header>
+      <nav id="NavBarAdminContainer">
+        <div id="AsideBarContainer">
+          <span id="NavBarAdminMenu" onclick="toggleMenu()">
+            <span class="Line1Menu"></span>
+            <span class="Line2Menu"></span>
+            <span class="Line3Menu"></span>
+          </span>
+
+          <ul id="Links">
+            <li><a href="./movies.html">Películas</a></li>
+            <li><a href="./sales.html">Ventas</a></li>
+            <li><a href="./categories.html">Categorias</a></li>
+          </ul>
+        </div>
+
+        <a href="./../index.html">
+          <img id="NavBarAdminlogo" src="./../assets/logo.png" alt="Logo" />
+        </a>
+
+        <div id="UserContainer">
+          <div class="User">
+            <p>User</p>
+            <p class="flecha" onclick="toggleMenuUser()">&#94;</p>
+          </div>
+          <ul id="NavBarAdminList">
+            <li class="NavBarAdminListItem">
+              <a href="/" class="NavBarAdminLinks">CERRAR SESIÓN</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <div id="BodyContainerAdmin">
+      <div class="BodyContainerSection">
+        <div id="BookingTables">
+          <table id="InfoMascota" class="BookingInfo">
+            <thead>
+              <tr>
+                <th><h2 id="productoNombre"></h2></th>
+                <th>
+                  <img id="productoImagen" src="./../../a"./assets/product.jpg"
+                  style="width: 15rem;" alt="Foto del producto" />
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="label">Nombre y Apellido:</td>
+                <td id="nombreApellido"></td>
+              </tr>
+              <tr>
+                <td class="label">Ciudad:</td>
+                <td id="ciudad"></td>
+              </tr>
+              <tr>
+                <td class="label">Email de contacto:</td>
+                <td id="email"></td>
+              </tr>
+              <tr>
+                <td class="label">Producto:</td>
+                <td id="producto"></td>
+              </tr>
+              <tr>
+                <td class="label">Cantidad:</td>
+                <td id="cantidad"></td>
+              </tr>
+              <tr>
+                <td class="label">Precio total:</td>
+                <td id="precioTotal"></td>
+              </tr>
+              <tr>
+                <td class="label">Fecha de compra:</td>
+                <td id="fechaCompra"></td>
+              </tr>
+              <tr>
+                <td class="label">Descripción:</td>
+                <td class="valor" id="productoDescripcion"></td>
+              </tr>
+              <tr>
+                <td class="label">Categoría:</td>
+                <td class="valor" id="productoCategoria"></td>
+              </tr>
+              <tr>
+                <td class="label">Precio unitario:</td>
+                <td class="valor" id="productoPrecio"></td>
+              </tr>
+              <tr>
+                <td class="label">Disponibilidad:</td>
+                <td class="valor" id="productoDisponibilidad"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <script src="./../js/main.js"></script>
+  </body>
+</html>
