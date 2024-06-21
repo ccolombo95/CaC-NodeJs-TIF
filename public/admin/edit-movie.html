@@ -53,22 +53,49 @@
     <div id="BodyContainerAdmin">
       <div class="BodyContainerSection">
         <h1>Editar producto</h1>
-        <form id="FormAdmin">
+        <form
+          id="FormAdmin"
+          enctype="multipart/form-data"
+          action="./../movies"
+          method="PUT"
+        >
           <input
             type="text"
-            id="product"
-            name="product"
-            placeholder="Producto"
+            id="title"
+            name="title"
+            placeholder="Película"
             required
           />
-          <textarea
-            name="descripcion"
-            id="descripcion"
-            cols="30"
-            rows="10"
-            placeholder="Descripción"
-          ></textarea>
+          <input
+            type="text"
+            id="director"
+            name="director"
+            placeholder="Director"
+            required
+          />
+          <input
+            type="text"
+            id="director2"
+            name="director2"
+            placeholder="Segundo director"
+            required
+          />
+          <input
+            type="text"
+            id="writer"
+            name="writer"
+            placeholder="Escritor"
+            required
+          />
+
           <div id="ImagenGroup">
+            <textarea
+              name="description"
+              id="description"
+              cols="30"
+              rows="6"
+              placeholder="Descripción"
+            ></textarea>
             <div
               class="FormImage"
               style="
@@ -81,73 +108,29 @@
                 type="file"
                 accept="image/*"
                 id="imagen_url"
-                name="imagen_url"
-              />
-            </div>
-            <div
-              class="FormImage"
-              style="
-              background: url(./../assets/imgfilled.jpg);
-              background-size: cover;
-              background-position: center;
-              background-repeat: no-repeat;"
-            >
-              <input
-                type="file"
-                accept="image/*"
-                id="imagen_url"
-                name="imagen_url"
-              />
-            </div>
-            <div
-              class="FormImage"
-              style="
-              background: url(./../assets/imgfilled.jpg);
-              background-size: cover;
-              background-position: center;
-              background-repeat: no-repeat;"
-            >
-              <input
-                type="file"
-                accept="image/*"
-                id="imagen_url"
-                name="imagen_url"
+                name="image"
               />
             </div>
           </div>
 
           <div class="SelectGroup">
-            <input
-              type="number"
-              id="price"
-              name="price"
-              placeholder="Precio x unidad"
-              required
-            />
-            <input
-              type="number"
-              id="stock"
-              name="stock"
-              placeholder="Stock"
-              required
-            />
-            <select id="Off" name="off" required>
-              <option value="">Oferta</option>
-              <option value="off">-</option>
-              <option value="diez">10%</option>
-              <option value="quince">15%</option>
-              <option value="veinte">20%</option>
-            </select>
-
+            <input type="date" id="date" name="date" required />
             <select id="category" name="category" required>
-              <option value="">Categoría</option>
-              <option value="cakes">Tortas y tartas</option>
-              <option value="Macarrones">Macarrones y alfajores</option>
-              <option value="Grande">Budín</option>
+              <option value="o">Categoría</option>
+              <option value="kids">Infantiles</option>
+              <option value="action">Acción</option>
+              <option value="drama">Drama</option>
+              <option value="comedy">Comedia</option>
+              <option value="love">Romance</option>
             </select>
+            <input
+              type="number"
+              name="duration"
+              placeholder="Duración (mins)"
+            />
           </div>
 
-          <button id="ButtonAdmin" type="submit">Enviar</button>
+          <button id="ButtonAdmin">Enviar</button>
         </form>
       </div>
     </div>

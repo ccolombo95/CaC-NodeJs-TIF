@@ -108,7 +108,7 @@
                 type="file"
                 accept="image/*"
                 id="imagen_url"
-                name="imagen_url"
+                name="image"
               />
             </div>
           </div>
@@ -116,14 +116,18 @@
           <div class="SelectGroup">
             <input type="date" id="date" name="date" required />
             <select id="category" name="category" required>
-              <option value="">Categoría</option>
+              <option value="o">Categoría</option>
               <option value="kids">Infantiles</option>
               <option value="action">Acción</option>
               <option value="drama">Drama</option>
               <option value="comedy">Comedia</option>
               <option value="love">Romance</option>
             </select>
-            <input type="number" placeholder="Duración (mins)" />
+            <input
+              type="number"
+              name="duration"
+              placeholder="Duración (mins)"
+            />
           </div>
 
           <button id="ButtonAdmin">Enviar</button>
