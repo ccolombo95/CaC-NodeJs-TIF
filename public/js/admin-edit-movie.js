@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const movie = JSON.parse(localStorage.getItem("selectedMovie"));
-  console.log(movie);
+  const formImage = document.getElementById("FormImage");
+  formImage.style.backgroundImage = `url("..${movie[0].image}")`;
+
   if (movie) {
     document.getElementById("title").value = movie[0].title || "";
 
@@ -8,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("director2").value = movie[0].director2 || "";
     document.getElementById("writer").value = movie[0].writer || "";
     document.getElementById("description").value = movie[0].description || "";
-
+    document.getElementById("imagen_url").value = movie[0].image || "";
     document.getElementById("category").value = movie[0].category || "";
     document.getElementById("duration").value = movie[0].duration || "";
   } else {
@@ -42,7 +44,11 @@ const modifyButtonHandleClick = (e) => {
       "Content-Type": "application/json",
     },
   })
-    .then((res) => res.json())
+    .then((res) => {
+      if (res.ok) {
+        window.location.href = `./movies.html`;
+      }
+    })
     .catch((err) => alert(err));
 };
 

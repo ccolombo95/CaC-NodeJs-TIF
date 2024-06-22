@@ -9,7 +9,9 @@ const getMovies = async (req, res) => {
 const createMovie = async (req, res) => {
   const movie = adapters.movieAdapter(req.body, req.file);
   const result = await db.createMovie(movie);
-  result ? res.redirect("/") : res.redirect("/");
+  result
+    ? res.redirect("./admin/movies.html")
+    : res.redirect("./admin/movies.html");
 };
 
 const incomplete = (req, res) => {

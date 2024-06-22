@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./../css/style-admin.css" />
     <link rel="icon" type="image/png" href="./../assets/favicon.png" />
 
-    <title>Crear producto</title>
+    <title>Agregar película</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -97,9 +97,10 @@
               placeholder="Descripción"
             ></textarea>
             <div
+              id="formImagenContainer"
               class="FormImage"
               style="
-              background: url(./../assets/imgfilled.jpg);
+              background-image: url(./../assets/imgfilled.jpg);
               background-size: cover;
               background-position: center;
               background-repeat: no-repeat;"
@@ -134,6 +135,26 @@
         </form>
       </div>
     </div>
+    <script>
+       document.addEventListener("DOMContentLoaded", () => {
+        const fileInput = document.getElementById("imagen_url");
+        const formImageContainer = document.getElementById("formImagenContainer");
+
+        fileInput.addEventListener("change", (event) => {
+          const file = event.target.files[0];
+
+          if (file) {
+            const reader = new FileReader();
+
+            reader.onload = (e) => {
+              formImageContainer.style.backgroundImage = `url(${e.target.result})`;
+            };
+
+            reader.readAsDataURL(file);
+          }
+        });
+      });
+    </script>
     <script src="./../js/admin-main.js"></script>
   </body>
 </html>

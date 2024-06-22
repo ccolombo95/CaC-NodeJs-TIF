@@ -19,7 +19,7 @@ const storage = multer.diskStorage({
     const isSupported = helpers.checkSupportedTypes(file.mimetype);
 
     isSupported
-      ? cb(null, "public/assets/img")
+      ? cb(null, "public/assets/img/")
       : cb("No soportamos este archivo");
   },
 });
