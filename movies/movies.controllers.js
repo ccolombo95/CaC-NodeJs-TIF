@@ -6,6 +6,11 @@ const getMovies = async (req, res) => {
   res.json(result);
 };
 
+const getMovieById = async (req, res) => {
+  const result = await db.getMovieById(req.params.id);
+  res.json(result);
+};
+
 const createMovie = async (req, res) => {
   const movie = adapters.movieAdapter(req.body, req.file);
   const result = await db.createMovie(movie);

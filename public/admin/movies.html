@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="./../css/style-admin.css" />
     <link rel="icon" type="image/png" href="./../assets/favicon.png" />
 
-    <title>Productos</title>
+    <title>Películas</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -71,28 +71,11 @@
               <th>Escritor</th>
             </tr>
           </thead>
-          <tbody>
-            <!-- Ejemplo de fila estática -->
-            <tr>
-              <td>1</td>
-              <td class="Name">
-                Macarrones
-                <span class="Functions">
-                  <a href="#" class="Delete">Eliminar</a>
-                  <span class="FunctionsLine"></span>
-                  <a href="./edit-movie.html" class="Edit">Editar</a>
-                </span>
-              </td>
-              <td>$200</td>
-              <td>Macarrones y alfajores</td>
-              <td>10%</td>
-              <td>Activo</td>
-            </tr>
-            <!-- Añadir más filas según sea necesario -->
-          </tbody>
+          <tbody id="movies-table"></tbody>
         </table>
       </div>
     </div>
-    <script src="./../js/main.js"></script>
+    <script src="./../js/admin-main.js"></script>
+    <script src="./../js/admin-movies.js"></script>
   </body>
 </html>

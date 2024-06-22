@@ -55,6 +55,7 @@
         <h1>Editar producto</h1>
         <form
           id="FormAdmin"
+          class="form-movie-edit"
           enctype="multipart/form-data"
           action="./../movies"
           method="PUT"
@@ -127,13 +128,15 @@
               type="number"
               name="duration"
               placeholder="Duración (mins)"
+              id="duration"
             />
           </div>
 
-          <button id="ButtonAdmin">Enviar</button>
+          <button type="submit" id="ButtonAdmin">Enviar</button>
         </form>
       </div>
     </div>
-    <script src="./../js/main.js"></script>
+    <script src="./../js/admin-main.js"></script>
+    <script src="./../js/admin-edit-movie.js"></script>
   </body>
 </html>

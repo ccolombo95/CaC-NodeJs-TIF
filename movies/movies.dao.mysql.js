@@ -8,6 +8,11 @@ const getMovies = async () => {
   const [result] = await connection.promise().query(query);
   return result;
 };
+const getMovieById = async (id) => {
+  const query = `SELECT * FROM movies WHERE id = ?`;
+  const [result] = await connection.promise().query(query);
+  return result;
+};
 
 const createMovie = async (movie) => {
   const {
