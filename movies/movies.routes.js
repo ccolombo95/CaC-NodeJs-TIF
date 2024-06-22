@@ -8,7 +8,6 @@ router
   .use(middlewares.routes.checkRoute)
 
   .get("/", controllers.getMovies)
-  .get("/:id", middlewares.routes.checkParams, controllers.getMovieById)
 
   .post(
     "/",
@@ -17,7 +16,6 @@ router
   )
 
   .put("/", controllers.incomplete)
-
   .put("/:id", middlewares.routes.checkParams, controllers.updateMovie)
 
   .delete("/:id", middlewares.routes.checkParams, controllers.deleteMovie);

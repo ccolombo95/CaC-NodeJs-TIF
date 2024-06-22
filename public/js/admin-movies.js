@@ -9,7 +9,7 @@ const template = (data) => `
         <span class="Functions">
             <a href="#" class="delete" data-id="${data.id}">Eliminar</a>
             <span class="FunctionsLine"></span>
-            <a href="edit-movie.html?id=${data.id}" class="Edit">Editar</a>
+            <a href="#" class="edit" data-id="${data.id}">Editar</a>
         </span>
         </td>
         <td>${data.description}</td>
@@ -26,13 +26,17 @@ const showMovies = (movies) => {
   }
 };
 
+let moviesData;
+
 fetch("./../movies")
   .then((res) => res.json())
-  .then((res) => showMovies(res))
+  .then((res) => {
+    moviesData = res;
+    showMovies(res);
+  })
   .catch((err) => console.log(err));
 
-//! ELIMINAR PELICULA
-// Capturar el evento de eliminación con delegación de eventos
+//! ELIMINAR/EDITAR PELICULA
 moviesTable.addEventListener("click", (event) => {
   if (event.target.classList.contains("delete")) {
     event.preventDefault();
@@ -43,7 +47,6 @@ moviesTable.addEventListener("click", (event) => {
     })
       .then((response) => {
         if (response.ok) {
-          // Eliminar la fila de la tabla si la eliminación fue exitosa
           event.target.closest("tr").remove();
         } else {
           alert("Error al eliminar la película.");
@@ -53,5 +56,11 @@ moviesTable.addEventListener("click", (event) => {
         console.error("Error:", error);
         alert("Error al eliminar la película.");
       });
+  } else if (event.target.classList.contains("edit")) {
+    event.preventDefault();
+    const movieId = event.target.getAttribute("data-id");
+    const movie = moviesData.filter((movie) => movie.id == movieId);
+    localStorage.setItem("selectedMovie", JSON.stringify(movie));
+    window.location.href = `./edit-movie.html?id=${movieId}`;
   }
 });
