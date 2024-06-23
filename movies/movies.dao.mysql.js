@@ -20,7 +20,14 @@ const createMovie = async (movie) => {
     director2,
     writer,
     category,
-    views,
+    lenguage,
+    budget,
+    revenue,
+    youtube,
+    facebook,
+    instagram,
+    twitter,
+    web,
   } = movie;
 
   const fields = [
@@ -33,10 +40,17 @@ const createMovie = async (movie) => {
     director2,
     writer,
     category,
-    views,
+    lenguage,
+    budget,
+    revenue,
+    youtube,
+    facebook,
+    instagram,
+    twitter,
+    web,
   ];
 
-  const query = `INSERT INTO movies (title, description, image, duration, date, director, director2, writer, category, views) VALUES (?,?,?,?,?,?,?,?,?,?)`;
+  const query = `INSERT INTO movies (title, description, image, duration, date, director, director2, writer, category, lenguage, budget, revenue, youtube, facebook, instagram, twitter, web) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`;
   const [result] = await connection.promise().query(query, fields);
 
   return result.affectedRows > 0;
@@ -53,7 +67,14 @@ const updateMovie = async (id, movie) => {
     director2,
     writer,
     category,
-    views, // Incluido views
+    lenguage,
+    budget,
+    revenue,
+    youtube,
+    facebook,
+    instagram,
+    twitter,
+    web,
   } = movie;
 
   const fields = [
@@ -66,11 +87,18 @@ const updateMovie = async (id, movie) => {
     director2,
     writer,
     category,
-    views,
+    lenguage,
+    budget,
+    revenue,
+    youtube,
+    facebook,
+    instagram,
+    twitter,
+    web,
     id,
   ];
 
-  const query = `UPDATE movies SET title=?, description=?, image=?, duration=?, date=?, director=?, director2=?, writer=?, category=?, views=? WHERE id=?`;
+  const query = `UPDATE movies SET title=?, description=?, image=?, duration=?, date=?, director=?, director2=?, writer=?, category=?, lenguage=?, budget=?, revenue=?, youtube=?, facebook=?, instagram=?, twitter=?, web=? WHERE id=?`;
   const [result] = await connection.promise().query(query, fields);
   return result.affectedRows > 0;
 };

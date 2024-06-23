@@ -1,10 +1,15 @@
 let moviesData = [];
 
-const cargarPeliculasTendencia = (page = 1) => {
+const cargarPeliculasTendencia = (page = 1, filtro = "") => {
   const itemsPerPage = 20;
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const movies = moviesData.slice(startIndex, endIndex);
+
+  let filteredMovies = moviesData.filter((movie) =>
+    movie.title.toLowerCase().includes(filtro.toLowerCase())
+  );
+
+  const movies = filteredMovies.slice(startIndex, endIndex);
 
   const tendenciasContainer = document.querySelector(
     ".peliculasTendencia .peliculas"
@@ -99,4 +104,20 @@ document.addEventListener("DOMContentLoaded", () => {
       cargarPeliculasAclamadas();
     })
     .catch((err) => console.log(err));
+
+  const inputBuscar = document.getElementById("buscar");
+  const botonBuscador = document.getElementById("botonBuscador");
+
+  const buscarPeliculas = () => {
+    const filtro = inputBuscar.value;
+    cargarPeliculasTendencia(1, filtro);
+  };
+
+  botonBuscador.addEventListener("click", buscarPeliculas);
+  inputBuscar.addEventListener("change", buscarPeliculas);
+  inputBuscar.addEventListener("keyup", (event) => {
+    if (event.key === "Enter") {
+      buscarPeliculas();
+    }
+  });
 });

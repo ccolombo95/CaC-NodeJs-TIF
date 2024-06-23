@@ -16,7 +16,12 @@ router
   )
 
   .put("/", controllers.incomplete)
-  .put("/:id", middlewares.routes.checkParams, controllers.updateMovie)
+  .put(
+    "/:id",
+    middlewares.routes.checkParams,
+    middlewares.files.uploadImage.single("image"),
+    controllers.updateMovie
+  )
 
   .delete("/:id", middlewares.routes.checkParams, controllers.deleteMovie);
 

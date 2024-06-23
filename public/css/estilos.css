@@ -181,7 +181,7 @@ body {
   .buscadorPrincipal {
     background-color: #181419;
     color: rgb(255, 255, 255);
-    height: 50vh;
+    height: 35vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -669,7 +669,7 @@ body {
 .mainDetalle {
   .detalle {
     padding-top: 55px;
-    background: linear-gradient(to right top, #6d6969a7, #6d6969a7), url("..");
+
     background-size: cover !important;
     background-repeat: no-repeat !important;
     background-position: center !important;

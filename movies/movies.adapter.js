@@ -12,7 +12,14 @@ const movieAdapter = (data, image = "") => {
     director2,
     writer,
     category,
-    views,
+    lenguage,
+    budget,
+    revenue,
+    youtube,
+    facebook,
+    instagram,
+    twitter,
+    web,
   } = data;
 
   const movie = new Movie(
@@ -25,7 +32,14 @@ const movieAdapter = (data, image = "") => {
     director2,
     writer,
     category,
-    views
+    lenguage,
+    budget,
+    revenue,
+    youtube,
+    facebook,
+    instagram,
+    twitter,
+    web
   );
   return movie;
 };

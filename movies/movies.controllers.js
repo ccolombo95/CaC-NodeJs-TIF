@@ -20,7 +20,7 @@ const incomplete = (req, res) => {
 
 const updateMovie = async (req, res) => {
   const { id } = req.params;
-  const movie = adapters.movieAdapter(req.body);
+  const movie = adapters.movieAdapter(req.body, req.file);
   const result = await db.updateMovie(id, movie);
   res.json(
     result

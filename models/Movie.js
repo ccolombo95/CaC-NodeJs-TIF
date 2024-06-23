@@ -9,7 +9,14 @@ export default class Movie {
     director2,
     writer,
     category,
-    views = 0
+    lenguage,
+    budget,
+    revenue,
+    youtube,
+    facebook,
+    instagram,
+    twitter,
+    web
   ) {
     this.title = title;
     this.description = description;
@@ -20,6 +27,13 @@ export default class Movie {
     this.director2 = director2;
     this.writer = writer;
     this.category = category;
-    this.views = views;
+    this.lenguage = lenguage;
+    this.budget = budget;
+    this.revenue = revenue;
+    this.youtube = youtube;
+    this.facebook = facebook;
+    this.instagram = instagram;
+    this.twitter = twitter;
+    this.web = web;
   }
 }

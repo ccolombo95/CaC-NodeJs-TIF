@@ -39,7 +39,12 @@
       </nav>
     </header>
     <main id="mainDetalle" class="mainDetalle">
-      <section class="detalle" data-aos="zoom-in">
+      <section
+        class="detalle"
+        id="detalle"
+        data-aos="zoom-in"
+        style="background-image: linear-gradient(to right top, #6d6969a7, #6d6969a7), url(./../assets/imgfilled.jpg);"
+      >
         <div class="contenedorDetalle">
           <div class="imgDetalle">
             <img id="img-movie" src=".." alt="m" style="max-width: 350px ;" />
@@ -85,7 +90,8 @@
           <iframe
             width="560"
             height="315"
-            src="https://www.youtube.com/embed/RjNcTBXTk4I?si=7fnK8NtlxetW0d1R"
+            id="youtube-frame"
+            src=""
             title="YouTube video player"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -96,26 +102,22 @@
           <div class="redes">
             <ul>
               <li>
-                <a
-                  href="https://www.facebook.com/supermariomovie"
-                  target="_blank"
+                <a href="" id="facebook-link" target="_blank"
                   ><i class="fab fa-facebook"></i
                 ></a>
               </li>
               <li>
-                <a href="https://twitter.com/supermariomovie" target="_blank"
+                <a id="twitter-link" href="" target="_blank"
                   ><i class="fab fa-twitter"></i
                 ></a>
               </li>
               <li>
-                <a href="https://instagram.com/supermariomovie/"
+                <a id="instagram-link" href=""
                   ><i class="fab fa-instagram" target="_blank"></i
                 ></a>
               </li>
               <li>
-                <a href="https://www.thesupermariobros.movie/"
-                  ><i class="fas fa-link" target="_blank"></i
-                ></a>
+                <a href=""><i class="fas fa-link" target="_blank"></i></a>
               </li>
             </ul>
           </div>
@@ -128,20 +130,16 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><strong>Status</strong></td>
-                  <td>Released</td>
+                  <td><strong>Lenguaje original</strong></td>
+                  <td id="lenguage-text">E</td>
                 </tr>
                 <tr>
-                  <td><strong>Original Language</strong></td>
-                  <td>English</td>
+                  <td><strong>Presupuesto</strong></td>
+                  <td id="budget-text">$</td>
                 </tr>
                 <tr>
-                  <td><strong>Budget</strong></td>
-                  <td>$100.000.000,00</td>
-                </tr>
-                <tr>
-                  <td><strong>Revenue</strong></td>
-                  <td>$1.347.013.866,00</td>
+                  <td><strong>Recaudación</strong></td>
+                  <td id="revenue-text"></td>
                 </tr>
               </tbody>
             </table>
