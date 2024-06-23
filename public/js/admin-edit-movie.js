@@ -20,10 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const updateButton = document.getElementById("ButtonAdmin");
 
-const modifyButtonHandleClick = (e) => {
+const modifyButtonHandleClick = (e, movieId) => {
   e.preventDefault();
-  const urlParams = new URLSearchParams(window.location.search);
-  const movieId = urlParams.get("id");
 
   const body = {
     title: document.getElementById("title").value,
@@ -33,6 +31,7 @@ const modifyButtonHandleClick = (e) => {
     image: document.getElementById("imagen_url").value,
     category: document.getElementById("category").value,
     duration: document.getElementById("duration").value,
+    date: document.getElementById("date").value,
   };
 
   const url = "./../movies/" + movieId;
@@ -52,4 +51,4 @@ const modifyButtonHandleClick = (e) => {
     .catch((err) => alert(err));
 };
 
-updateButton.addEventListener("click", modifyButtonHandleClick);
+updateButton.addEventListener("click", modifyButtonHandleClick(e, movie.id));

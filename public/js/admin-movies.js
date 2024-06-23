@@ -12,8 +12,8 @@ const template = (data) => `
             <a href="#" class="edit" data-id="${data.id}">Editar</a>
         </span>
         </td>
-        <td>${data.description}</td>
         <td>${data.category}</td>
+        <td>${data.director2}</td>
         <td>${data.director}</td>
         <td>${data.writer}</td>`;
 
