@@ -140,6 +140,9 @@
               <option value="japones">Japones</option>
               <option value="coreano">Coreano</option>
             </select>
+            <select id="cateter" name="cateter">
+              <option value="o">Categoria</option>
+            </select>
           </div>
           <input
             type="text"
@@ -171,26 +174,8 @@
         </form>
       </div>
     </div>
-    <script>
-       document.addEventListener("DOMContentLoaded", () => {
-        const fileInput = document.getElementById("imagen_url");
-        const formImageContainer = document.getElementById("formImagenContainer");
 
-        fileInput.addEventListener("change", (event) => {
-          const file = event.target.files[0];
-
-          if (file) {
-            const reader = new FileReader();
-
-            reader.onload = (e) => {
-              formImageContainer.style.backgroundImage = `url(${e.target.result})`;
-            };
-
-            reader.readAsDataURL(file);
-          }
-        });
-      });
-    </script>
     <script src="./../js/admin-main.js"></script>
+    <script src="./../js/admin-create-movie.js"></script>
   </body>
 </html>

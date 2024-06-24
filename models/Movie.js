@@ -9,6 +9,7 @@ export default class Movie {
     director2,
     writer,
     category,
+    id_category,
     lenguage,
     budget,
     revenue,
@@ -27,6 +28,7 @@ export default class Movie {
     this.director2 = director2;
     this.writer = writer;
     this.category = category;
+    this.id_category = id_category;
     this.lenguage = lenguage;
     this.budget = budget;
     this.revenue = revenue;

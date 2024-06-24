@@ -1,6 +1,6 @@
 import express from "express";
 import usersRoutes from "./users/users.routes.js";
-import productsRoutes from "./products/products.routes.js";
+import categoriesRoutes from "./categories/categories.routes.js";
 import moviesRoutes from "./movies/movies.routes.js";
 import { middlewares } from "./middlewares/index.js";
 
@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/users", usersRoutes);
-app.use("/products", productsRoutes);
+app.use("/categories", categoriesRoutes);
 app.use("/movies", moviesRoutes);
 
 app.use(middlewares.errors.errorController);
