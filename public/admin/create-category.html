@@ -53,41 +53,30 @@
     <div id="BodyContainerAdmin">
       <div class="BodyContainerSection">
         <h1>Crear categoría</h1>
-        <form id="FormAdmin">
+        <form
+          id="FormAdmin"
+          enctype="multipart/form-data"
+          action="./../categories"
+          method="POST"
+        >
           <input
             type="text"
-            id="product"
-            name="product"
-            placeholder="Producto"
+            id="title"
+            name="title"
+            placeholder="Título de categoria"
             required
           />
 
-          <div id="ImagenGroup">
+          <div id="ImagenGroup" style="width:100%;">
             <textarea
-              name="descripcion"
-              id="descripcion"
-              cols="30"
-              rows="10"
+              name="description"
+              id="description"
+              rows="7"
               placeholder="Descripción"
             ></textarea>
-            <div
-              class="FormImage"
-              style="
-              background: url(./assets/imgfilled.jpg);
-              background-size: cover;
-              background-position: center;
-              background-repeat: no-repeat;"
-            >
-              <input
-                type="file"
-                accept="image/*"
-                id="imagen_url"
-                name="imagen_url"
-              />
-            </div>
           </div>
 
-          <button id="ButtonAdmin" type="submit">Enviar</button>
+          <button id="ButtonAdmin">Agregar</button>
         </form>
       </div>
     </div>
