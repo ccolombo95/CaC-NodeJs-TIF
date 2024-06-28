@@ -1,10 +1,9 @@
 import Category from "../models/Category.js";
 
 const categoryAdapter = (data) => {
-  let { title, description, counter } = data;
+  const { title, description } = data;
 
-  const product = new Category(title, description, counter);
-  return category;
+  return new Category(title, description);
 };
 
 export const adapters = {

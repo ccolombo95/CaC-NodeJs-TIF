@@ -1,7 +1,6 @@
 export default class Category {
-  constructor(title, description, counter) {
+  constructor(title, description) {
     this.title = title;
     this.description = description;
-    this.counter = counter;
   }
 }

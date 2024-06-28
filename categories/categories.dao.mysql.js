@@ -8,32 +8,21 @@ const getCategories = async () => {
   const [result] = await connection.promise().query(query);
   return result;
 };
-const counterMovies = async () => {
-  const query = `UPDATE categories c
-                LEFT JOIN (
-                    SELECT id_category, COUNT(*) as movie_count
-                    FROM movies
-                    GROUP BY id_category
-                ) m ON c.id = m.id_category
-                SET c.counter = COALESCE(m.movie_count, 0);`;
-  const [result] = await connection.promise().query(query);
-  return result;
-};
 
 const createCategory = async (category) => {
-  const { title, description, counter } = category;
-  const fields = [title, description, counter];
+  const { title, description } = category;
+  const fields = [title, description];
 
-  const query = `INSERT INTO categories VALUES (NULL,?,?,?)`;
+  const query = `INSERT INTO categories (title, description) VALUES (?,?)`;
   const [result] = await connection.promise().query(query, fields);
 
   return result.affectedRows > 0;
 };
 
 const updateCategory = async (id, category) => {
-  const { title, description, counter } = category;
-  const fields = [title, description, counter, id];
-  const query = `UPDATE categories SET title=?, description=?, counter=? WHERE id=?`;
+  const { title, description } = category;
+  const fields = [title, description, id];
+  const query = `UPDATE categories SET title=?, description=? WHERE id=?`;
   const [result] = await connection.promise().query(query, fields);
   return result.affectedRows > 0;
 };

@@ -9,7 +9,9 @@ const getCategories = async (req, res) => {
 const createCategory = async (req, res) => {
   const category = adapters.categoryAdapter(req.body);
   const result = await db.createCategory(category);
-  result ? res.redirect("/") : res.redirect("/");
+  result
+    ? res.redirect("./admin/categories.html")
+    : res.redirect("./admin/categories.html");
 };
 
 const incomplete = (req, res) => {
