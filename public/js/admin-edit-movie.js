@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("director2").value = movie[0].director2 || "";
     document.getElementById("writer").value = movie[0].writer || "";
     document.getElementById("description").value = movie[0].description || "";
-    document.getElementById("category").value = movie[0].category || "";
+    document.getElementById("category").value = movie[0].id_category || "";
     document.getElementById("duration").value = movie[0].duration || "";
     document.getElementById("budget").value = movie[0].budget || "";
     document.getElementById("revenue").value = movie[0].revenue || "";
@@ -65,7 +65,8 @@ const modifyButtonHandleClick = (e) => {
     director: document.getElementById("director").value,
     director2: document.getElementById("director2").value,
     writer: document.getElementById("writer").value,
-    category: document.getElementById("category").value,
+    id_category:
+      parseInt(document.getElementById("category").value, 10) || null,
     budget: document.getElementById("budget").value,
     revenue: document.getElementById("revenue").value,
     lenguage: document.getElementById("lenguage").value,

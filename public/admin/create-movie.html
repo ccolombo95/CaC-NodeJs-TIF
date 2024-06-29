@@ -4,7 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./../css/style-admin.css" />
-    <link rel="icon" type="image/png" href="./../assets/favicon.png" />
+    <script
+      src="https://kit.fontawesome.com/f7fb471b65.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
     <title>Agregar película</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,22 +21,15 @@
   <body>
     <header>
       <nav id="NavBarAdminContainer">
-        <div id="AsideBarContainer">
-          <span id="NavBarAdminMenu" onclick="toggleMenu()">
-            <span class="Line1Menu"></span>
-            <span class="Line2Menu"></span>
-            <span class="Line3Menu"></span>
-          </span>
+        <span id="NavBarAdminMenu" onclick="toggleMenu()">
+          <span class="Line1Menu"></span>
+          <span class="Line2Menu"></span>
+          <span class="Line3Menu"></span>
+        </span>
 
-          <ul id="Links">
-            <li><a href="./movies.html">Películas</a></li>
-            <li><a href="./sales.html">Ventas</a></li>
-            <li><a href="./categories.html">Categorias</a></li>
-          </ul>
-        </div>
-
-        <a href="./../index.html">
-          <img id="NavBarAdminlogo" src="./../assets/logo.png" alt="Logo" />
+        <a class="anclaLogo" href="./../index.html">
+          <i class="fas fa-film" aria-hidden="true"></i>
+          <span>CAC-Movies</span>
         </a>
 
         <div id="UserContainer">
@@ -51,6 +48,13 @@
       </nav>
     </header>
     <div id="BodyContainerAdmin">
+      <div id="AsideBarContainer">
+        <ul id="Links">
+          <li><a href="./movies.html">Películas</a></li>
+          <li><a href="./sales.html">Ventas</a></li>
+          <li><a href="./categories.html">Categorias</a></li>
+        </ul>
+      </div>
       <div class="BodyContainerSection">
         <h1>Agregar producto</h1>
         <form
@@ -115,14 +119,6 @@
 
           <div class="SelectGroup">
             <input type="date" id="date" name="date" required />
-            <select id="category" name="category" required>
-              <option value="o">Categoría</option>
-              <option value="kids">Infantiles</option>
-              <option value="action">Acción</option>
-              <option value="drama">Drama</option>
-              <option value="comedy">Comedia</option>
-              <option value="love">Romance</option>
-            </select>
             <input
               type="number"
               name="duration"
@@ -140,7 +136,7 @@
               <option value="japones">Japones</option>
               <option value="coreano">Coreano</option>
             </select>
-            <select id="cateter" name="cateter">
+            <select id="category" name="category">
               <option value="o">Categoria</option>
             </select>
           </div>

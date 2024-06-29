@@ -3,6 +3,7 @@ const buscador = document.getElementById("buscador");
 
 const template = (data) => `
   <td>${data.id}</td>
+  <td class="table-image"> <img src="./..${data.image}" alt="${data.title}" style="height:6rem;"></td>
   <td class="Name">
     ${data.title}
     <span class="Functions">
@@ -11,9 +12,11 @@ const template = (data) => `
       <a href="#" class="edit" data-id="${data.id}">Editar</a>
     </span>
   </td>
-  <td>${data.category}</td>
-  <td>${data.director2}</td>
+  <td>${data.id_category}</td>
+
+
   <td>${data.director}</td>
+  <td>${data.director2}</td>
   <td>${data.writer}</td>`;
 
 const showMovies = (movies, page = 1, itemsPerPage = 4) => {
@@ -29,7 +32,6 @@ const showMovies = (movies, page = 1, itemsPerPage = 4) => {
     moviesTable.append(tr);
   }
 
-  // Mostrar controles de paginación
   updatePaginationControls(page, Math.ceil(movies.length / itemsPerPage));
 };
 

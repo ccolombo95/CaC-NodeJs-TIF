@@ -1,3 +1,6 @@
+body {
+  margin: 0;
+}
 a {
   cursor: pointer;
   text-decoration: none;
@@ -27,27 +30,28 @@ input,
 /* NAVBAR */
 /* GENERAL */
 #NavBarAdminContainer {
-  color: black;
   padding: 1rem 0;
   width: 100%;
-  height: 50px;
   z-index: 999;
   top: 0;
 
   display: flex;
   justify-content: space-between;
+  align-items: center;
   font-size: 16px;
   font-family: "Archivo", sans-serif;
 
-  background-color: rgb(250, 250, 250);
+  background-color: #9f3647;
+  color: #ffffff;
+  height: 5vh;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 /* FIN GENERAL */
 
 #AsideBarContainer {
   width: 100%;
-  height: 100%;
-  min-height: 102vh;
+
+  height: 105vh;
   max-width: 250px;
   z-index: 0;
 
@@ -68,7 +72,7 @@ input,
   border-radius: 10px;
 }
 #NavBarAdminMenu span {
-  background-color: rgb(28, 28, 28);
+  background-color: #ffffff;
   width: 100%;
   height: 2px;
 
@@ -95,9 +99,11 @@ input,
   align-items: flex-start;
   width: 100%;
   height: 100%;
+  margin: 0;
 
-  background-color: white;
-  border-top: 3px solid rgb(193, 156, 88);
+  background-color: #9f3647;
+
+  border-top: 3px solid white;
   border-right: 1px solid #c4d5ee;
   font-size: 16px;
   font-family: "Archivo", sans-serif;
@@ -120,14 +126,19 @@ input,
 #AsideBarContainer ul li a {
   padding-left: 1.5rem;
 
-  color: rgba(30, 30, 30, 0.897);
+  color: #ffffff;
 }
 
 /* LOGO */
-#NavBarAdminlogo {
-  height: 45px;
-  width: auto;
-  margin-top: 3px;
+.anclaLogo {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.2rem;
+  /*animacion hover*/
+  &:hover {
+    animation: tilt-n-move-shaking 0.25s infinite;
+  }
 }
 /* LOGO COMUN */
 
@@ -137,15 +148,16 @@ input,
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
-  margin: 1rem 2rem;
+  margin: 0rem 2rem 0 2rem;
   width: 280px;
   height: 100%;
-  position: relative; /* Agregado */
+  position: relative;
 }
 
 #UserContainer .User {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 0.7rem;
 }
 
@@ -209,13 +221,14 @@ input,
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    z-index: 1000;
+    z-index: 100000;
   }
 
   #AsideBarContainer ul {
     position: relative;
     width: 0;
     opacity: 0;
+    height: 100vh;
 
     overflow: hidden;
     transition: width 0.5s ease, opacity 0.5s ease;
@@ -223,6 +236,7 @@ input,
 
   #AsideBarContainer ul.show {
     width: 100%;
+
     opacity: 1;
     z-index: 999;
   }
@@ -247,11 +261,11 @@ input,
 /* NAVBAR FIN */
 #BodyContainerAdmin {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
   background-color: rgba(194, 194, 194, 0.1);
-
+  min-height: min-content;
   width: 100%;
   height: 100%;
 }
@@ -327,7 +341,7 @@ input,
 
 #TableAdmin tbody tr td {
   border-bottom: 1px solid rgb(221, 216, 216);
-  padding: 0.5rem 0;
+  padding: 0;
   height: 100%;
 }
 #TableAdmin tbody tr:hover {
@@ -361,7 +375,7 @@ input,
   justify-content: center;
   gap: 0.5rem;
   width: 100%;
-  height: 84.8px;
+  height: 100px;
 }
 #TableAdmin tbody tr td span.Functions {
   display: inline-flex;

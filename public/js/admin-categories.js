@@ -3,7 +3,7 @@ const categoriesContainer = document.getElementById("category-table");
 const template = (data) => `
         <td>${data.title}</td>
         <td>${data.counter}</td>
-        <td><a href="#" class="Delete" data-id="${data.id}"> X </a></td>`;
+        <td><a href="#" class="delete" data-id="${data.id}"> X </a></td>`;
 
 const showCategories = (categories) => {
   for (let category of categories) {
