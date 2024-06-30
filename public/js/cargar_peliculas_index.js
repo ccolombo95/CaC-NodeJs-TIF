@@ -1,7 +1,7 @@
 let moviesData = [];
 
-const cargarPeliculasTendencia = (page = 1, filtro = "") => {
-  const itemsPerPage = 20;
+const cargarPeliculas = (page = 1, filtro = "") => {
+  const itemsPerPage = 10;
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
 
@@ -18,7 +18,7 @@ const cargarPeliculasTendencia = (page = 1, filtro = "") => {
 
   movies.forEach((movie) => {
     const ancla = document.createElement("a");
-    ancla.href = `#`;
+    ancla.href = `./pages/detalle.html?id=${movie.id}`;
     ancla.classList.add("link-movie");
     ancla.setAttribute("data-id", movie.id);
 
@@ -42,18 +42,6 @@ const cargarPeliculasTendencia = (page = 1, filtro = "") => {
     pelicula.appendChild(tituloPelicula);
     tituloPelicula.appendChild(titulo);
     tendenciasContainer.appendChild(ancla);
-  });
-
-  //! LINK DE CADA PELICULA
-  const linkMovies = document.querySelectorAll(".link-movie");
-  linkMovies.forEach((linkMovie) => {
-    linkMovie.addEventListener("click", (event) => {
-      event.preventDefault();
-      const movieId = event.currentTarget.getAttribute("data-id");
-      const movie = moviesData.filter((movie) => movie.id == movieId)[0];
-      localStorage.setItem("selectedMovie", JSON.stringify(movie));
-      window.location.href = `./pages/detalle.html?id=${movieId}`;
-    });
   });
 
   tendenciasContainer.parentElement.setAttribute("data-page", page);
@@ -86,12 +74,12 @@ const seccionTendencias = document.getElementById("tendencias");
 botonAnterior.addEventListener("click", () => {
   let currentPage = Number(seccionTendencias.getAttribute("data-page"));
   if (currentPage <= 1) return;
-  cargarPeliculasTendencia(currentPage - 1);
+  cargarPeliculas(currentPage - 1);
 });
 
 botonSiguiente.addEventListener("click", () => {
   let currentPage = Number(seccionTendencias.getAttribute("data-page"));
-  cargarPeliculasTendencia(currentPage + 1);
+  cargarPeliculas(currentPage + 1);
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -100,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((res) => res.json())
     .then((res) => {
       moviesData = res;
-      cargarPeliculasTendencia();
+      cargarPeliculas();
       cargarPeliculasAclamadas();
     })
     .catch((err) => console.log(err));
@@ -110,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const buscarPeliculas = () => {
     const filtro = inputBuscar.value;
-    cargarPeliculasTendencia(1, filtro);
+    cargarPeliculas(1, filtro);
   };
 
   botonBuscador.addEventListener("click", buscarPeliculas);

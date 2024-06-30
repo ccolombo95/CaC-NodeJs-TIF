@@ -673,7 +673,7 @@ body {
     background-size: cover !important;
     background-repeat: no-repeat !important;
     background-position: center !important;
-    height: 70vh;
+    height: 75vh;
     .contenedorDetalle {
       width: 75%;
       margin: 0 auto;
@@ -692,11 +692,11 @@ body {
         h2 {
           margin-top: 20px;
         }
-        .contenedorCreditos {
-          margin-top: 20px;
-          display: flex;
-          justify-content: space-between;
-        }
+      }
+      .contenedorCreditos {
+        margin-top: 20px;
+        display: flex;
+        justify-content: space-between;
       }
     }
   }

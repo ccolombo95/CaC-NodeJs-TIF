@@ -8,6 +8,16 @@ const getMovies = async () => {
   const [result] = await connection.promise().query(query);
   return result;
 };
+const getMovie = async (id) => {
+  const query = `
+    SELECT movies.*, categories.title as category_title 
+    FROM movies 
+    JOIN categories ON movies.id_category = categories.id 
+    WHERE movies.id = ?
+  `;
+  const [result] = await connection.promise().query(query, [id]);
+  return result;
+};
 
 const createMovie = async (movie) => {
   const {
@@ -152,6 +162,7 @@ const updateCategoryCounters = async () => {
 export const db = {
   updateCategoryCounters,
   getMovies,
+  getMovie,
   createMovie,
   updateMovie,
   deleteMovie,

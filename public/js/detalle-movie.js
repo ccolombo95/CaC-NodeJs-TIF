@@ -1,38 +1,152 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const movie = JSON.parse(localStorage.getItem("selectedMovie"));
-  if (movie) {
-    document.querySelector("#title").textContent = movie.title;
-    document.querySelector("#img-movie").src = `./..${movie.image}`;
-    document.querySelector(
-      "#detalle"
-    ).style.backgroundImage = `linear-gradient(to right top, #6d6969a7, #6d6969a7), url('./..${movie.image}')`;
-    document.querySelector(
-      "#date-category-duration"
-    ).textContent = `${movie.date.slice(0, 10)} • ${movie.category} • ${
-      movie.duration
-    } mins `;
-    document.querySelector("#img-movie").alt = movie.title || "";
-    document.querySelector("#description").textContent =
-      movie.description || "";
-    document.querySelector("#director").textContent = movie.director || "";
+let movie;
 
-    document.querySelector("#budget-text").textContent =
-      `$${movie.budget.toLocaleString("es-ES")}` || "";
+function updateMovieDetails(movie) {
+  const infoContainer = document.querySelector(".textoDetalle");
 
-    document.querySelector("#revenue-text").textContent =
-      `$${movie.revenue.toLocaleString("es-ES")}` || "";
-    document.querySelector("#lenguage-text").textContent = movie.lenguage || "";
+  const title = document.createElement("h1");
+  title.textContent = movie.title || "";
+  const dateCategoryDuration = document.createElement("p");
+  dateCategoryDuration.textContent = `${
+    movie.date ? movie.date.slice(0, 10) : ""
+  } • ${movie.category_title || ""} • ${movie.duration || ""} mins `;
+  const descriptionH2 = document.createElement("h2");
+  descriptionH2.textContent = "Descripción";
+  const description = document.createElement("p");
+  description.textContent = movie.description || "  ";
 
-    document.querySelector("#youtube-frame").src = movie.youtube || "";
-    document.querySelector("#facebook-link").href = movie.facebook || "";
-    document.querySelector("#instagram-link").href = movie.instagram || "";
-    document.querySelector("#twitter-link").href = movie.twitter || "";
-    document.querySelector("#web-link").href = movie.web || "";
+  infoContainer.appendChild(title);
+  infoContainer.appendChild(dateCategoryDuration);
+  infoContainer.appendChild(descriptionH2);
+  infoContainer.appendChild(description);
+  //-------------------------------------------------------
+  const directorContainer = document.querySelector("#director");
 
-    if (movie.director2 != null) {
-      document.querySelector("#director2").textContent = movie.director2;
-      document.querySelector("#title-director2").style.display = "none";
-    }
-    document.querySelector("#writer").textContent = movie.writer;
+  const director = document.createElement("h3");
+  director.textContent = movie.director;
+  const directorP = document.createElement("p");
+  directorP.textContent = "Director";
+
+  directorContainer.appendChild(director);
+  directorContainer.appendChild(directorP);
+  //------------------------------------------------------------
+  const director2Container = document.querySelector("#director2");
+
+  if (movie.director2 == "") {
+    director2Container.style.display = "none";
+  } else {
+    const director2 = document.createElement("h3");
+    director2.textContent = movie.director2;
+    const director2P = document.createElement("p");
+    director2P.textContent = "Director";
+
+    director2Container.appendChild(director2);
+    director2Container.appendChild(director2P);
   }
+  //----------------------------------------------------
+  const writerContainer = document.querySelector("#writer");
+
+  const writer = document.createElement("h3");
+  writer.textContent = movie.writer;
+  const writerP = document.createElement("p");
+  writerP.textContent = "Escritor";
+
+  writerContainer.appendChild(writer);
+  writerContainer.appendChild(writerP);
+}
+
+function updateMovieImage(movie) {
+  const imageUrl = movie.image ? `./..${movie.image}` : "";
+
+  const imageContainer = document.querySelector(".imgDetalle");
+  const img = document.createElement("img");
+  img.alt = `${movie.title || ""}`;
+  img.src = `${imageUrl || ""}`;
+  img.style.maxWidth = "350px";
+  imageContainer.appendChild(img);
+
+  document.getElementById(
+    "detalle"
+  ).style.backgroundImage = `linear-gradient(to right top, #6d6969a7, #6d6969a7), url("${imageUrl}")`;
+}
+
+function updateFrameInfo(movie) {
+  const youtubeLink = document.querySelector("#youtube-frame");
+  youtubeLink.src = movie.youtube || "";
+  const facebookLink = document.querySelector("#facebook-link");
+  facebookLink.href = movie.facebook || "";
+  const instagramLink = document.querySelector("#instagram-link");
+  instagramLink.href = movie.instagram || "";
+  const twitterLink = document.querySelector("#twitter-link");
+  twitterLink.href = movie.twitter || "";
+  const webLink = document.querySelector("#web-link");
+  webLink.href = movie.web || "";
+}
+
+function updateAdditionalInfo(movie) {
+  // Selección de las filas donde queremos agregar la información
+  const lenguageRow = document.getElementById("lenguage-container");
+  const budgetRow = document.getElementById("budget-container");
+  const revenueRow = document.getElementById("revenue-container");
+
+  // Creación y configuración de las celdas para el lenguaje
+  const lenguageTitle = document.createElement("td");
+  lenguageTitle.textContent = "Lenguaje original";
+  lenguageTitle.style.fontWeight = "700";
+
+  const lenguageValue = document.createElement("td");
+  lenguageValue.textContent = movie.lenguage;
+
+  // Agregar las celdas al row del lenguaje
+  lenguageRow.appendChild(lenguageTitle);
+  lenguageRow.appendChild(lenguageValue);
+
+  // Creación y configuración de las celdas para el presupuesto
+  const budgetTitle = document.createElement("td");
+  budgetTitle.textContent = "Presupuesto";
+  budgetTitle.style.fontWeight = "700";
+
+  const budgetValue = document.createElement("td");
+  budgetValue.textContent = movie.budget.toLocaleString("es-ES");
+
+  // Agregar las celdas al row del presupuesto
+  budgetRow.appendChild(budgetTitle);
+  budgetRow.appendChild(budgetValue);
+
+  // Creación y configuración de las celdas para la recaudación
+  const revenueTitle = document.createElement("td");
+  revenueTitle.textContent = "Recaudación";
+  revenueTitle.style.fontWeight = "700";
+
+  const revenueValue = document.createElement("td");
+  revenueValue.textContent = movie.revenue.toLocaleString("es-ES");
+
+  // Agregar las celdas al row de la recaudación
+  revenueRow.appendChild(revenueTitle);
+  revenueRow.appendChild(revenueValue);
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const movieId = urlParams.get("id");
+
+  fetch(`./../movies/movie/${movieId}`)
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return res.json();
+    })
+    .then((res) => {
+      movie = res[0];
+      updateMovieDetails(movie);
+      updateMovieImage(movie);
+      updateAdditionalInfo(movie);
+    })
+    .then(() => {
+      updateFrameInfo(movie);
+    })
+
+    .catch((error) => {
+      console.error("Error fetching movie data:", error);
+    });
 });

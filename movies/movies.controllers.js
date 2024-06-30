@@ -7,6 +7,19 @@ const getMovies = async (req, res) => {
   const result3 = await db.updateCategoryCounters();
   res.json(result);
 };
+const getMovie = async (req, res) => {
+  try {
+    const result = await db.getMovie(req.params.id);
+    if (result) {
+      res.json(result); // Enviar datos de la película como JSON
+    } else {
+      res.status(404).json({ error: "Movie not found" });
+    }
+  } catch (error) {
+    console.error("Error fetching movie:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 
 const createMovie = async (req, res) => {
   const movie = adapters.movieAdapter(req.body, req.file);
@@ -45,6 +58,7 @@ const deleteMovie = async (req, res) => {
 
 export const controllers = {
   getMovies,
+  getMovie,
   createMovie,
   updateMovie,
   deleteMovie,

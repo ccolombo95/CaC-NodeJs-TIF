@@ -8,6 +8,7 @@ router
   .use(middlewares.routes.checkRoute)
 
   .get("/", controllers.getMovies)
+  .get("/movie/:id", controllers.getMovie)
 
   .post(
     "/",
