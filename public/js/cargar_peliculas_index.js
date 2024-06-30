@@ -1,4 +1,5 @@
 let moviesData = [];
+let categorizedMovies = [];
 
 const cargarPeliculas = (page = 1, filtro = "") => {
   const itemsPerPage = 10;
@@ -48,22 +49,38 @@ const cargarPeliculas = (page = 1, filtro = "") => {
 };
 
 //! CARGA PELICULAS EN EL CARRUSEL
-const cargarPeliculasAclamadas = () => {
-  const aclamadasContainer = document.querySelector(".aclamadas");
-  const movies = moviesData.slice(0, 10);
+const sectionSliders = document.getElementById("sectionPeliculasCategorizadas");
+const aclamadasContainer = document.querySelector("#aclamadasContainer");
 
-  movies.forEach((movie) => {
-    const peliculaItem = document.createElement("div");
-    peliculaItem.classList.add("peliculaItem");
+const cargarPeliculasSlider = (movies, category) => {
+  const categoryContainer = document.createElement("div");
+  categoryContainer.classList.add("aclamadas");
+  movies.slice(0, 10);
+  if (movies.length > 6) {
+    const titleCategory = document.createElement("h3");
+    titleCategory.classList.add("tituloSection");
+    titleCategory.textContent = `Películas de ${category}`;
+    aclamadasContainer.appendChild(titleCategory);
 
-    const img = document.createElement("img");
-    img.classList.add("imgAclamada");
-    img.src = movie.image;
-    img.alt = movie.title;
-    img.loading = "lazy";
+    movies.forEach((movie) => {
+      const peliculaItem = document.createElement("div");
+      peliculaItem.classList.add("peliculaItem");
 
-    peliculaItem.appendChild(img);
-    aclamadasContainer.appendChild(peliculaItem);
+      const img = document.createElement("img");
+      img.classList.add("imgAclamada");
+      img.src = `./..${movie.image_movie}`;
+      img.alt = movie.title_movie;
+      img.loading = "lazy";
+
+      peliculaItem.appendChild(img);
+      categoryContainer.appendChild(peliculaItem);
+      aclamadasContainer.appendChild(categoryContainer);
+    });
+  }
+};
+const cargarSliders = () => {
+  categorizedMovies.forEach((category) => {
+    cargarPeliculasSlider(category.movies, category.category);
   });
 };
 
@@ -89,7 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((res) => {
       moviesData = res;
       cargarPeliculas();
-      cargarPeliculasAclamadas();
     })
     .catch((err) => console.log(err));
 
@@ -108,4 +124,13 @@ document.addEventListener("DOMContentLoaded", () => {
       buscarPeliculas();
     }
   });
+  fetch("./../categorizedMovies")
+    .then((res) => res.json())
+    .then((res) => {
+      categorizedMovies = res;
+    })
+    .then((res) => {
+      cargarSliders();
+    })
+    .catch((err) => console.log(err));
 });

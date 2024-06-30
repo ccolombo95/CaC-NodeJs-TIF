@@ -1,6 +1,7 @@
 import express from "express";
 import usersRoutes from "./users/users.routes.js";
 import categoriesRoutes from "./categories/categories.routes.js";
+import categorizedMoviesRoutes from "./categorizedMovies/categorizedMovies.routes.js";
 import moviesRoutes from "./movies/movies.routes.js";
 import { middlewares } from "./middlewares/index.js";
 
@@ -16,6 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/users", usersRoutes);
 app.use("/categories", categoriesRoutes);
 app.use("/movies", moviesRoutes);
+app.use("/categorizedMovies", categorizedMoviesRoutes);
 
 app.use(middlewares.errors.errorController);
 
