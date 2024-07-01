@@ -9,12 +9,9 @@ const template = (data) => `
     <span class="Functions">
       <a href="#" class="delete" data-id="${data.id}">Eliminar</a>
       <span class="FunctionsLine"></span>
-      <a href="#" class="edit" data-id="${data.id}">Editar</a>
+      <a href="./edit-movie.html?id=${data.id}" class="edit">Editar</a>
     </span>
   </td>
-  <td>${data.id_category}</td>
-
-
   <td>${data.director}</td>
   <td>${data.director2}</td>
   <td>${data.writer}</td>`;
@@ -65,25 +62,19 @@ moviesTable.addEventListener("click", (event) => {
         console.error("Error:", error);
         alert("Error al eliminar la película.");
       });
-  } else if (event.target.classList.contains("edit")) {
-    event.preventDefault();
-    const movieId = event.target.getAttribute("data-id");
-    const movie = moviesData.filter((movie) => movie.id == movieId);
-    localStorage.setItem("selectedMovie", JSON.stringify(movie));
-    window.location.href = `./edit-movie.html?id=${movieId}`;
   }
 });
 
 //! FUNCION DE BUSQUEDA
-buscador.addEventListener("input", (event) => {
+buscador.addEventListener("keyup", (event) => {
   const query = event.target.value.toLowerCase();
   const filteredMovies = moviesData.filter((movie) => {
     return (
-      movie.title.toLowerCase().includes(query) ||
-      movie.category.toLowerCase().includes(query) ||
-      movie.director.toLowerCase().includes(query) ||
-      movie.director2.toLowerCase().includes(query) ||
-      movie.writer.toLowerCase().includes(query)
+      movie.title?.toLowerCase().includes(query) ||
+      movie.category?.toLowerCase().includes(query) ||
+      movie.director?.toLowerCase().includes(query) ||
+      movie.director2?.toLowerCase().includes(query) ||
+      movie.writer?.toLowerCase().includes(query)
     );
   });
   showMovies(filteredMovies);

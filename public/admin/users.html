@@ -10,11 +10,10 @@
     ></script>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
-    <title>Ventas</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <title>Usuarios</title>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&family=Archivo:ital,wght@0,100..900;1,100..900&family=Courgette&family=Tangerine:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap"
       rel="stylesheet"
     />
   </head>
@@ -51,42 +50,28 @@
       <div id="AsideBarContainer">
         <ul id="Links">
           <li><a href="./movies.html">Películas</a></li>
-          <li><a href="./sales.html">Ventas</a></li>
           <li><a href="./categories.html">Categorias</a></li>
+          <li><a href="./users.html">Usuarios</a></li>
         </ul>
       </div>
       <div class="BodyContainerSection">
-        <h1>Ventas</h1>
-        <div id="TableFunctions">
-          <input type="text" placeholder="Buscar" id="buscador" />
-          <div></div>
-        </div>
+        <h1>Usuarios</h1>
 
         <table id="TableAdmin">
           <thead id="header">
             <tr>
-              <th>Compra</th>
-              <th>Cliente</th>
-              <th>Producto</th>
-              <th>Cantidad</th>
-              <th>Envio</th>
-              <th></th>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Email</th>
+              <th>Acción</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>#34423</td>
-              <td>Juan Pérez</td>
-              <td>Macarrones</td>
-              <td>10</td>
-              <td>Once</td>
-              <td><a href="./sale-info.html" class="MoreInfo">+</a></td>
-            </tr>
-            <!-- Añadir más filas según sea necesario -->
-          </tbody>
+          <tbody id="users-table"></tbody>
         </table>
       </div>
     </div>
     <script src="./../js/admin-main.js"></script>
+    <script src="./../js/admin-users.js"></script>
   </body>
 </html>

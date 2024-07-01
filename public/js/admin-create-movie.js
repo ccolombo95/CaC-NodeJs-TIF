@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
       option.value = `${category.id}`;
       option.innerHTML = `${category.title}`;
       cateter.append(option);
-      console.log("ready");
     }
   };
 

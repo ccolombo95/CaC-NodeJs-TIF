@@ -37,15 +37,6 @@ const createUser = async (user) => {
   }
 };
 
-const updateUser = async (
-  id,
-  { name, surname, email, password, birthday, country, acuerdo }
-) => {
-  const query = `UPDATE ${table} SET name = ${name}, surname = ${surname}, email = ${email}, password = ${password}, birthday = ${birthday}, country = ${country}, acuerdo = ${acuerdo} WHERE id = ${id}`;
-  const [result] = await connection.promise().query(query);
-  return helpers.isSuccessfulOperation(result);
-};
-
 const deleteUser = async (id) => {
   const query = `DELETE FROM ${table} WHERE id = ${id}`;
   const [result] = await connection.promise().query(query);
@@ -53,19 +44,19 @@ const deleteUser = async (id) => {
 };
 
 const verifyUser = async (email, password) => {
-  const query = `SELECT * FROM ${table} WHERE email = ?`; // Uso de parámetro de consulta
+  const query = `SELECT * FROM ${table} WHERE email = ?`;
   try {
     const [rows] = await connection.promise().query(query, [email]);
     if (rows.length === 0) {
       console.error("Usuario no encontrado");
-      return null; // O lanza un error si lo prefieres
+      return null;
     }
 
     const user = rows[0];
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
       console.error("Contraseña incorrecta");
-      return null; // O lanza un error si lo prefieres
+      return null;
     }
 
     return user;
@@ -77,7 +68,6 @@ const verifyUser = async (email, password) => {
 export const db = {
   getUsers,
   createUser,
-  updateUser,
   deleteUser,
   verifyUser,
 };

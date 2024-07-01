@@ -8,7 +8,7 @@ function updateMovieDetails(movie) {
   const dateCategoryDuration = document.createElement("p");
   dateCategoryDuration.textContent = `${
     movie.date ? movie.date.slice(0, 10) : ""
-  } • ${movie.category_title || ""} • ${movie.duration || ""} mins `;
+  } • ${movie.category || ""} • ${movie.duration || ""} mins `;
   const descriptionH2 = document.createElement("h2");
   descriptionH2.textContent = "Descripción";
   const description = document.createElement("p");

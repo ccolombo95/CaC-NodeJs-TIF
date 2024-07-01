@@ -12,13 +12,6 @@ const createUser = async (req, res) => {
   res.redirect("./pages/iniciosesion.html");
 };
 
-const updateUser = async (req, res) => {
-  const { id } = req.params;
-  const user = adapters.parseUser(req.body);
-  const result = await db.updateUser(id, user);
-  res.json(result);
-};
-
 const deleteUser = async (req, res) => {
   const { id } = req.params;
   const result = await db.deleteUser(id);
@@ -32,7 +25,6 @@ const verifyUser = async (req, res) => {
 export const controllers = {
   getUsers,
   createUser,
-  updateUser,
   deleteUser,
   verifyUser,
 };

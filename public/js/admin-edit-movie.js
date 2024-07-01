@@ -1,19 +1,17 @@
 let movie;
+let imagenAnterior = "";
 
-document.addEventListener("DOMContentLoaded", () => {
-  movie = JSON.parse(localStorage.getItem("selectedMovie"));
-
+const mostrarDatos = () => {
   const formImage = document.getElementById("FormImage");
   const fileInput = document.getElementById("imagen_url");
-  const imagenAnterior = movie[0].image;
+
   function updateImage(url) {
     formImage.style.backgroundImage = `url('${url}')`;
   }
 
-  if (movie[0].image != "") {
-    updateImage(`./..${movie[0].image}`);
-  } else {
-    updateImage(`./../assets/imgfilled.jpg`);
+  if (movie.image != "") {
+    imagenAnterior = movie.image;
+    updateImage(`./..${movie.image}`);
   }
 
   fileInput.addEventListener("change", (event) => {
@@ -31,25 +29,40 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   if (movie) {
-    document.getElementById("title").value = movie[0].title || "";
-    document.getElementById("date").value = movie[0].date.slice(0, 10);
-    document.getElementById("director").value = movie[0].director || "";
-    document.getElementById("director2").value = movie[0].director2 || "";
-    document.getElementById("writer").value = movie[0].writer || "";
-    document.getElementById("description").value = movie[0].description || "";
-    document.getElementById("category").value = movie[0].id_category || "";
-    document.getElementById("duration").value = movie[0].duration || "";
-    document.getElementById("budget").value = movie[0].budget || "";
-    document.getElementById("revenue").value = movie[0].revenue || "";
-    document.getElementById("lenguage").value = movie[0].lenguage || "";
-    document.getElementById("youtube").value = movie[0].youtube || "";
-    document.getElementById("facebook").value = movie[0].facebook || "";
-    document.getElementById("instagram").value = movie[0].instagram || "";
-    document.getElementById("twitter").value = movie[0].twitter || "";
-    document.getElementById("web").value = movie[0].web || "";
+    document.getElementById("title").value = movie.title || "";
+    document.getElementById("date").value = movie.date.slice(0, 10);
+    document.getElementById("director").value = movie.director || "";
+    document.getElementById("director2").value = movie.director2 || "";
+    document.getElementById("writer").value = movie.writer || "";
+    document.getElementById("description").value = movie.description || "";
+    document.getElementById("category").value = movie.id_category || "";
+    document.getElementById("duration").value = movie.duration || "";
+    document.getElementById("budget").value = movie.budget || "";
+    document.getElementById("revenue").value = movie.revenue || "";
+    document.getElementById("lenguage").value = movie.lenguage || "";
+    document.getElementById("youtube").value = movie.youtube || "";
+    document.getElementById("facebook").value = movie.facebook || "";
+    document.getElementById("instagram").value = movie.instagram || "";
+    document.getElementById("twitter").value = movie.twitter || "";
+    document.getElementById("web").value = movie.web || "";
   } else {
-    console.error("No movie data found in local storage");
+    console.error("No movie data found in the response");
   }
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const movieId = urlParams.get("id");
+
+  fetch(`./../movies/movie/${movieId}`)
+    .then((res) => res.json())
+    .then((data) => {
+      movie = data[0];
+      mostrarDatos();
+    })
+    .catch((error) => {
+      console.error("Error fetching movie data:", error);
+    });
 });
 
 const updateButton = document.getElementById("ButtonAdmin");
@@ -84,13 +97,11 @@ const modifyButtonHandleClick = (e) => {
 
   if (imageInput.files.length > 0) {
     formData.append("image", imageInput.files[0]);
-  } else if ((imageInput.files.length = 0)) {
+  } else if (imagenAnterior) {
     formData.append("image", imagenAnterior);
   }
-  const movieId = movie[0].id;
-  const url = `./../movies/${movieId}`;
 
-  fetch(url, {
+  fetch(`./../movies/${movie.id}`, {
     method: "PUT",
     body: formData,
   })

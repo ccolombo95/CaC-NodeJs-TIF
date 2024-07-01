@@ -10,7 +10,7 @@ const getMovies = async () => {
 };
 const getMovie = async (id) => {
   const query = `
-    SELECT movies.*, categories.title as category_title 
+    SELECT movies.*, categories.title as category 
     FROM movies 
     JOIN categories ON movies.id_category = categories.id 
     WHERE movies.id = ?
