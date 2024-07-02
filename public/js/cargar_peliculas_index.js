@@ -55,7 +55,7 @@ const aclamadasContainer = document.querySelector("#aclamadasContainer");
 const cargarPeliculasSlider = (movies, category) => {
   const categoryContainer = document.createElement("div");
   categoryContainer.classList.add("aclamadas");
-  movies.slice(0, 10);
+
   if (movies.length > 6) {
     const titleCategory = document.createElement("h3");
     titleCategory.classList.add("tituloSection");
