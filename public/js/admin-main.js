@@ -1,4 +1,4 @@
-//ASide menu
+//! Menu hamburguesa admin
 function toggleMenu() {
   const menu = document.getElementById("Links");
   menu.classList.toggle("show");

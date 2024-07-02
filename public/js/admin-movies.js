@@ -16,12 +16,15 @@ const template = (data) => `
   <td>${data.director2}</td>
   <td>${data.writer}</td>`;
 
+//!Función para mostrar cada linea de la tabla de peliculas pero con páginas
+
 const showMovies = (movies, page = 1, itemsPerPage = 4) => {
-  moviesTable.innerHTML = ""; // Limpiar la tabla antes de mostrar las películas
+  moviesTable.innerHTML = "";
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const moviesToShow = movies.slice(startIndex, endIndex);
 
+  //! Por cada pelicula un reglón
   for (let movie of moviesToShow) {
     const tr = document.createElement("tr");
     tr.className = "movie";
@@ -33,7 +36,7 @@ const showMovies = (movies, page = 1, itemsPerPage = 4) => {
 };
 
 let moviesData;
-
+//! Get de las peliculas
 fetch("./../movies")
   .then((res) => res.json())
   .then((res) => {
@@ -42,7 +45,7 @@ fetch("./../movies")
   })
   .catch((err) => console.log(err));
 
-//! ELIMINAR/EDITAR PELICULA
+//! ELIMINAR
 moviesTable.addEventListener("click", (event) => {
   if (event.target.classList.contains("delete")) {
     event.preventDefault();
@@ -80,7 +83,7 @@ buscador.addEventListener("keyup", (event) => {
   showMovies(filteredMovies);
 });
 
-//! FUNCION DE PAGINACION
+//! FUNCION DE LOS INDICES PARA CAMBIAR DE PAGINA
 const updatePaginationControls = (currentPage, totalPages) => {
   const paginationControls = document.getElementById("pagination-controls");
   paginationControls.innerHTML = "";
@@ -95,7 +98,7 @@ const updatePaginationControls = (currentPage, totalPages) => {
     paginationControls.appendChild(button);
   }
 };
-
+//! Arma los contenedores de los indices y los agrega
 document.addEventListener("DOMContentLoaded", () => {
   const bodyContainerSection = document.querySelector(".BodyContainerSection");
   const paginationControlsContainer = document.createElement("div");

@@ -1,6 +1,7 @@
 let movie;
 let imagenAnterior = "";
 
+//! FUNCION PARA MOSTRAR LOS DATOS EN EL FORM
 const mostrarDatos = () => {
   const formImage = document.getElementById("FormImage");
   const fileInput = document.getElementById("imagen_url");
@@ -54,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   const movieId = urlParams.get("id");
 
+  //! GET LOS DATOS DE LA MOVIE POR ID
   fetch(`./../movies/movie/${movieId}`)
     .then((res) => res.json())
     .then((data) => {
@@ -68,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const updateButton = document.getElementById("ButtonAdmin");
 const modifyButtonHandleClick = (e) => {
   e.preventDefault();
-
+  //! ARMA EL BODY CON LOS DATOS A MODIFICAR
   const imageInput = document.getElementById("imagen_url");
   const body = {
     title: document.getElementById("title").value,
@@ -90,17 +92,19 @@ const modifyButtonHandleClick = (e) => {
     web: document.getElementById("web").value,
   };
 
+  //! Armo el formData para ver si incluyo la imagen o no
+
   const formData = new FormData();
   for (const key in body) {
     formData.append(key, body[key]);
   }
-
+  //! Si no ingreso nada en el input[type="file"], deja la imagen anterior
   if (imageInput.files.length > 0) {
     formData.append("image", imageInput.files[0]);
   } else if (imagenAnterior) {
     formData.append("image", imagenAnterior);
   }
-
+  //!PUT PARA MODIFICAR LOS DATOS EN LA BASE DE DATOS
   fetch(`./../movies/${movie.id}`, {
     method: "PUT",
     body: formData,

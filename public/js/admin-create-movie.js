@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const formImageContainer = document.getElementById("formImagenContainer");
   let categories = [];
 
+  //! GET de categories
   fetch("./../categories")
     .then((res) => res.json())
     .then((res) => {
@@ -16,6 +17,8 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((err) => console.log(err));
 
+  //! FUNCION PARA MOSTRAR CATEGORIAS EN EL SELECT
+
   const showCategories = (categories) => {
     cateter.innerHTML = "";
     for (let category of categories) {
@@ -25,6 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
       cateter.append(option);
     }
   };
+
+  //! FUNCION PARA MOSTRAR LA IMAGEN QUE SE INGRESA
 
   fileInput.addEventListener("change", (event) => {
     const file = event.target.files[0];

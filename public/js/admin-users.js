@@ -7,6 +7,7 @@ const template = (data) => `
   <td>${data.email}</td>
   <td><a href="#" data-id="${data.id}" class="delete">X</a></td>`;
 
+//! Muestra los usuarios en la tabla
 const showUsers = (users) => {
   usersTable.innerHTML = "";
 
@@ -19,7 +20,7 @@ const showUsers = (users) => {
 };
 
 let usersData;
-
+//! Get users
 fetch("./../users")
   .then((res) => res.json())
   .then((res) => {
@@ -28,7 +29,7 @@ fetch("./../users")
   })
   .catch((err) => console.log(err));
 
-//! ELIMINAR/EDITAR PELICULA
+//! ELIMINAR Usuario
 usersTable.addEventListener("click", (event) => {
   if (event.target.classList.contains("delete")) {
     event.preventDefault();

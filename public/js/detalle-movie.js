@@ -1,5 +1,5 @@
 let movie;
-
+//!Funcionaza para crear y mostrar los detalles de las peliculas
 function updateMovieDetails(movie) {
   const infoContainer = document.querySelector(".textoDetalle");
 
@@ -53,7 +53,7 @@ function updateMovieDetails(movie) {
   writerContainer.appendChild(writer);
   writerContainer.appendChild(writerP);
 }
-
+//! Agrega la imagen de fondo en degradé y la chiquita
 function updateMovieImage(movie) {
   const imageUrl = movie.image ? `./..${movie.image}` : "";
 
@@ -68,7 +68,7 @@ function updateMovieImage(movie) {
     "detalle"
   ).style.backgroundImage = `linear-gradient(to right top, #6d6969a7, #6d6969a7), url("${imageUrl}")`;
 }
-
+//! agrega los links del trailer y redes
 function updateFrameInfo(movie) {
   const youtubeLink = document.querySelector("#youtube-frame");
   youtubeLink.src = movie.youtube || "";
@@ -81,14 +81,12 @@ function updateFrameInfo(movie) {
   const webLink = document.querySelector("#web-link");
   webLink.href = movie.web || "";
 }
-
+//! Agrega la info adicional (budget, lenguage y revenue)
 function updateAdditionalInfo(movie) {
-  // Selección de las filas donde queremos agregar la información
   const lenguageRow = document.getElementById("lenguage-container");
   const budgetRow = document.getElementById("budget-container");
   const revenueRow = document.getElementById("revenue-container");
 
-  // Creación y configuración de las celdas para el lenguaje
   const lenguageTitle = document.createElement("td");
   lenguageTitle.textContent = "Lenguaje original";
   lenguageTitle.style.fontWeight = "700";
@@ -96,11 +94,9 @@ function updateAdditionalInfo(movie) {
   const lenguageValue = document.createElement("td");
   lenguageValue.textContent = movie.lenguage;
 
-  // Agregar las celdas al row del lenguaje
   lenguageRow.appendChild(lenguageTitle);
   lenguageRow.appendChild(lenguageValue);
-
-  // Creación y configuración de las celdas para el presupuesto
+  //-----------------------------------------------
   const budgetTitle = document.createElement("td");
   budgetTitle.textContent = "Presupuesto";
   budgetTitle.style.fontWeight = "700";
@@ -108,11 +104,9 @@ function updateAdditionalInfo(movie) {
   const budgetValue = document.createElement("td");
   budgetValue.textContent = movie.budget.toLocaleString("es-ES");
 
-  // Agregar las celdas al row del presupuesto
   budgetRow.appendChild(budgetTitle);
   budgetRow.appendChild(budgetValue);
-
-  // Creación y configuración de las celdas para la recaudación
+  //-----------------------------------------------
   const revenueTitle = document.createElement("td");
   revenueTitle.textContent = "Recaudación";
   revenueTitle.style.fontWeight = "700";
@@ -120,7 +114,6 @@ function updateAdditionalInfo(movie) {
   const revenueValue = document.createElement("td");
   revenueValue.textContent = movie.revenue.toLocaleString("es-ES");
 
-  // Agregar las celdas al row de la recaudación
   revenueRow.appendChild(revenueTitle);
   revenueRow.appendChild(revenueValue);
 }
@@ -128,7 +121,7 @@ function updateAdditionalInfo(movie) {
 document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   const movieId = urlParams.get("id");
-
+  //! Get la pelicula por el id y llama a las funciones una vez obtenidos los datos
   fetch(`./../movies/movie/${movieId}`)
     .then((res) => {
       if (!res.ok) {

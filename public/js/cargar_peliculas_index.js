@@ -52,16 +52,18 @@ const cargarPeliculas = (page = 1, filtro = "") => {
 const sectionSliders = document.getElementById("sectionPeliculasCategorizadas");
 const aclamadasContainer = document.querySelector("#aclamadasContainer");
 
+//!Funcion para cargar las peliculas en el slider
 const cargarPeliculasSlider = (movies, category) => {
   const categoryContainer = document.createElement("div");
   categoryContainer.classList.add("aclamadas");
 
+  //! SOLO ARMA PARA LAS CATEGORIAS QUE TIENEN MAS DE 6 PELICULAS
   if (movies.length > 6) {
     const titleCategory = document.createElement("h3");
     titleCategory.classList.add("tituloSection");
     titleCategory.textContent = `Películas de ${category}`;
     aclamadasContainer.appendChild(titleCategory);
-
+    //!Por cada pelicula, arma la imagen
     movies.forEach((movie) => {
       const peliculaItem = document.createElement("div");
       peliculaItem.classList.add("peliculaItem");
@@ -78,12 +80,14 @@ const cargarPeliculasSlider = (movies, category) => {
     });
   }
 };
+//!Carga los sliders en el contenedor principal
 const cargarSliders = () => {
   categorizedMovies.forEach((category) => {
     cargarPeliculasSlider(category.movies, category.category);
   });
 };
 
+//!Botones de las peliculas generales
 const botonAnterior = document.getElementById("botonAnterior");
 const botonSiguiente = document.getElementById("botonSiguiente");
 const seccionTendencias = document.getElementById("tendencias");
@@ -100,7 +104,7 @@ botonSiguiente.addEventListener("click", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Cargar datos de películas antes de ejecutar funciones de carga
+  //! Get movies
   fetch("./../movies")
     .then((res) => res.json())
     .then((res) => {
@@ -109,6 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch((err) => console.log(err));
 
+  //! Funcion del buscador
   const inputBuscar = document.getElementById("buscar");
   const botonBuscador = document.getElementById("botonBuscador");
 
@@ -124,6 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
       buscarPeliculas();
     }
   });
+  //!Get de las peliculas para los sliders
   fetch("./../categorizedMovies")
     .then((res) => res.json())
     .then((res) => {

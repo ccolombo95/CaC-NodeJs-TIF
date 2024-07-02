@@ -20,7 +20,7 @@ const deleteUser = async (req, res) => {
 const verifyUser = async (req, res) => {
   const { email, password } = req.body;
   const result = await db.verifyUser(email, password);
-  res.redirect("./../index.html");
+  res.status(200).json({ message: "Inicio de sesión exitoso", result });
 };
 export const controllers = {
   getUsers,

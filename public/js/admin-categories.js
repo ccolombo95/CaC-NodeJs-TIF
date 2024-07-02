@@ -5,6 +5,7 @@ const template = (data) => `
         <td>${data.counter}</td>
         <td><a href="#" class="delete" data-id="${data.id}"> X </a></td>`;
 
+//! Función para armar cada reglón de tabla
 const showCategories = (categories) => {
   for (let category of categories) {
     const tr = document.createElement("tr");
@@ -13,13 +14,13 @@ const showCategories = (categories) => {
     categoriesContainer.append(tr);
   }
 };
-
+//! Get de las categorias
 fetch("./../categories")
   .then((res) => res.json())
   .then((res) => showCategories(res))
   .catch((err) => console.log(err));
 
-//! ELIMINAR/EDITAR PELICULA
+//! ELIMINAR CATEGORy
 categoriesContainer.addEventListener("click", (event) => {
   if (event.target.classList.contains("delete")) {
     event.preventDefault();

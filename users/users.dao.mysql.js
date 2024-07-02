@@ -58,7 +58,7 @@ const verifyUser = async (email, password) => {
       console.error("Contraseña incorrecta");
       return null;
     }
-
+    console.log("Iniciaste sesión");
     return user;
   } catch (error) {
     console.error("Error al verificar el usuario:", error);
