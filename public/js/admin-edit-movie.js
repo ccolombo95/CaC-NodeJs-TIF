@@ -1,7 +1,6 @@
 let movie;
-let imagenAnterior = "";
 
-//! FUNCION PARA MOSTRAR LOS DATOS EN EL FORM
+//! Función para mostrar los datos en el formulario
 const mostrarDatos = () => {
   const formImage = document.getElementById("FormImage");
   const fileInput = document.getElementById("imagen_url");
@@ -10,8 +9,10 @@ const mostrarDatos = () => {
     formImage.style.backgroundImage = `url('${url}')`;
   }
 
-  if (movie.image != "") {
-    imagenAnterior = movie.image;
+  if (movie.image) {
+    const imagenAnterior = movie.image;
+
+    localStorage.setItem("imagenAnterior", imagenAnterior);
     updateImage(`./..${movie.image}`);
   }
 
@@ -55,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   const movieId = urlParams.get("id");
 
-  //! GET LOS DATOS DE LA MOVIE POR ID
+  //! Obtener los datos de la película por ID
   fetch(`./../movies/movie/${movieId}`)
     .then((res) => res.json())
     .then((data) => {
@@ -70,7 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const updateButton = document.getElementById("ButtonAdmin");
 const modifyButtonHandleClick = (e) => {
   e.preventDefault();
-  //! ARMA EL BODY CON LOS DATOS A MODIFICAR
+  // Arma el body con los datos a modificar
   const imageInput = document.getElementById("imagen_url");
   const body = {
     title: document.getElementById("title").value,
@@ -92,19 +93,20 @@ const modifyButtonHandleClick = (e) => {
     web: document.getElementById("web").value,
   };
 
-  //! Armo el formData para ver si incluyo la imagen o no
-
+  //! Arma el formData para ver si incluye la imagen o no
   const formData = new FormData();
   for (const key in body) {
     formData.append(key, body[key]);
   }
-  //! Si no ingreso nada en el input[type="file"], deja la imagen anterior
-  if (imageInput.files.length > 0) {
+
+  //! Si no ingresó nada en el input[type="file"], deja la imagen anterior
+  if (imageInput.files.length === 0) {
+    formData.append("image", localStorage.getItem("imagenAnterior"));
+  } else {
     formData.append("image", imageInput.files[0]);
-  } else if (imagenAnterior) {
-    formData.append("image", imagenAnterior);
   }
-  //!PUT PARA MODIFICAR LOS DATOS EN LA BASE DE DATOS
+
+  //! PUT para modificar los datos en la base de datos
   fetch(`./../movies/${movie.id}`, {
     method: "PUT",
     body: formData,

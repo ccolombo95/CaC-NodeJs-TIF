@@ -11,7 +11,7 @@ const getMovie = async (req, res) => {
   try {
     const result = await db.getMovie(req.params.id);
     if (result) {
-      res.json(result); // Enviar datos de la película como JSON
+      res.json(result);
     } else {
       res.status(404).json({ error: "Movie not found" });
     }

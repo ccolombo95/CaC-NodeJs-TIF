@@ -1,4 +1,5 @@
 let movie;
+
 //!Funcionaza para crear y mostrar los detalles de las peliculas
 function updateMovieDetails(movie) {
   const infoContainer = document.querySelector(".textoDetalle");
