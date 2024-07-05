@@ -1,12 +1,9 @@
 import { Router } from "express";
-import { controllers } from "../users/users.controllers.js";
+import { controllers } from "./index.js";
+import { middlewares } from "../auth/index.js";
 
-const router = Router();
+export const routes = Router();
 
-router
+routes
   .get("/", controllers.getUsers)
-  .post("/", controllers.createUser)
-  .post("/login", controllers.verifyUser)
-  .delete("/:id", controllers.deleteUser);
-
-export default router;
+  .get("/:id", middlewares.authJWT, controllers.getUserById);

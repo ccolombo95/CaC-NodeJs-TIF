@@ -29,7 +29,7 @@
         data-aos-duration="1000"
         class="seccionRegistrarse"
       >
-        <form action="./../users" method="POST">
+        <form action="./../auth/register" method="POST">
           <h2 class="tituloRegistrarse">Registro</h2>
           <div>
             <input type="text" placeholder="Nombre" id="nombre" name="name" />
@@ -41,6 +41,15 @@
               placeholder="Apellido"
               id="apellido"
               name="surname"
+            />
+            <div class="error-text"></div>
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Usuario"
+              id="usuario"
+              name="username"
             />
             <div class="error-text"></div>
           </div>
