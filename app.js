@@ -1,9 +1,12 @@
 import express from "express";
+import dotenv from "dotenv";
+dotenv.config();
+console.log("Variables de entorno cargadas:", process.env);
 
 import categoriesRoutes from "./categories/categories.routes.js";
 import categorizedMoviesRoutes from "./categorizedMovies/categorizedMovies.routes.js";
 import moviesRoutes from "./movies/movies.routes.js";
-import { authRoutes, config } from "./auth/index.js";
+import { authRoutes, config as authConfig } from "./auth/index.js";
 import { usersRoutes } from "./users/index.js";
 
 import { middlewares } from "./middlewares/index.js";
@@ -17,11 +20,10 @@ const PORT = process.env.PORT || 8080;
 app.use(
   cors({
     methods: ["POST"],
-    // origin: 'http://localhost:5500'
     origin: /http:\/\/localhost:*/,
   })
 );
-app.use(cookieParser(config.secretKey));
+app.use(cookieParser(authConfig.secretKey));
 
 app.use(express.static("public"));
 

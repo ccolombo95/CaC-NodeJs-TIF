@@ -46,11 +46,6 @@ const register = (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
 
-  console.log(
-    `Received login request with email: ${email} and password: ${password}`
-  );
-
-  // Validar que email y password estén presentes
   if (!email || !password) {
     return res
       .status(400)
@@ -58,8 +53,6 @@ const login = async (req, res) => {
   }
 
   try {
-    // Buscamos el usuario en la base de datos
-    console.log(`Fetching user by email: ${email}`);
     const user = await usersDB.getUserByEmail(email);
 
     if (!user) {
@@ -67,9 +60,6 @@ const login = async (req, res) => {
       return res.status(404).json({ error: true, desc: "User not found" });
     }
 
-    console.log(`User found: ${JSON.stringify(user)}`);
-
-    // Validar que user.password no esté undefined
     if (!user.password) {
       console.error("User password is undefined");
       return res
@@ -77,21 +67,14 @@ const login = async (req, res) => {
         .json({ error: true, desc: "Internal server error" });
     }
     if (!user.password) {
-      console.error("User password is undefined");
-      console.log(`Full user object: ${JSON.stringify(user)}`);
       return res
         .status(500)
         .json({ error: true, desc: "Internal server error" });
     }
 
-    // Comprobamos la contraseña
-    console.log(
-      `Comparing passwords: input ${password}, stored ${user.password}`
-    );
     const isValid = bcrypt.compareSync(password, user.password);
 
     if (!isValid) {
-      console.log("Invalid password.");
       return res.status(401).json({ error: true, desc: "Invalid password" });
     }
 
@@ -100,10 +83,7 @@ const login = async (req, res) => {
 
     const token = jwt.sign(payload, signature, config.token);
 
-    res
-      .status(200)
-      .cookie("token", token, config.cookie)
-      .json({ message: "yass" });
+    res.status(200).cookie("token", token, config.cookie).redirect("/");
   } catch (error) {
     console.error(`Error in login: ${error.message}`);
     res.status(500).json({ error: true, desc: "Internal server error" });
@@ -117,11 +97,10 @@ const logout = (req, res) => {
 
 const checkCookie = (req, res) => {
   const token = req.cookies.token;
-
   if (token) {
-    return res.json({ authenticated: true });
+    return res.json({ tokenValid: false });
   } else {
-    return res.json({ authenticated: false });
+    return res.json({ tokenValid: true });
   }
 };
 

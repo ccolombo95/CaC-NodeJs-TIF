@@ -19,42 +19,31 @@
     />
   </head>
   <body>
-    <header>
-      <nav id="NavBarAdminContainer">
-        <span id="NavBarAdminMenu" onclick="toggleMenu()">
-          <span class="Line1Menu"></span>
-          <span class="Line2Menu"></span>
-          <span class="Line3Menu"></span>
-        </span>
-
-        <a class="anclaLogo" href="./../index.html">
+    <header class="header">
+      <nav class="navegacion">
+        <a class="anclaLogo" href="/">
           <i class="fas fa-film" aria-hidden="true"></i>
           <span>CAC-Movies</span>
         </a>
-
-        <div id="UserContainer">
-          <div class="User">
-            <p>User</p>
-            <p class="flecha" onclick="toggleMenuUser()">&#94;</p>
-          </div>
-          <ul id="NavBarAdminList">
-            <li class="NavBarAdminListItem">
-              <a href="./../../index.html" class="NavBarAdminLinks"
-                >CERRAR SESIÓN</a
-              >
-            </li>
-          </ul>
-        </div>
+        <ul class="listaNav">
+          <li class="listaItem">
+            <a class="linkNav" href="./movies.html">Películas</a>
+          </li>
+          <li class="listaItem">
+            <a class="linkNav" href="./categories.html">Categorias</a>
+          </li>
+          <li class="listaItem">
+            <a class="linkNav" href="./users.html">Usuarios</a>
+          </li>
+          <li class="listaItem">
+            <a class="linkNav iniciarSesion" href="./../../auth/logout"
+              >Cerrar sesión</a
+            >
+          </li>
+        </ul>
       </nav>
     </header>
     <div id="BodyContainerAdmin">
-      <div id="AsideBarContainer">
-        <ul id="Links">
-          <li><a href="./movies.html">Películas</a></li>
-          <li><a href="./categories.html">Categorias</a></li>
-          <li><a href="./users.html">Usuarios</a></li>
-        </ul>
-      </div>
       <div class="BodyContainerSection">
         <h1>Películas</h1>
         <div id="TableFunctions">

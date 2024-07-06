@@ -17,7 +17,7 @@ const getUserById = async (id) => {
 };
 const getUserByEmail = async (email) => {
   try {
-    const query = `SELECT email, password FROM users WHERE email="${email}" LIMIT 1`;
+    const query = `SELECT id, email, password FROM users WHERE email="${email}" LIMIT 1`;
     const [result] = await connection.promise().query(query);
     return result[0]; // Devuelve el primer resultado encontrado
   } catch (error) {

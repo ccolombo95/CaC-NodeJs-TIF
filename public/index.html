@@ -27,13 +27,18 @@
           <li class="listaItem">
             <a class="linkNav" href="#tendencias">Películas</a>
           </li>
-          <li class="listaItem">
-            <a class="linkNav" href="./pages/registrarse.html">Registrarse</a>
+          <li class="listaItem" id="registrar">
+            <a class="linkNav registrar" href="./pages/registrarse.html"
+              >Registrarse</a
+            >
           </li>
-          <li class="listaItem">
-            <a class="linkNav iniciarSesion" href="./pages/iniciosesion.html"
+          <li class="listaItem" id="iniciarSesion">
+            <a class="linkNav Sesion" href="./pages/iniciosesion.html"
               >Iniciar Sesión</a
             >
+          </li>
+          <li class="listaItem" id="cerrarSesion">
+            <a class="linkNav Sesion" href="./../auth/logout">Cerrar Sesión</a>
           </li>
         </ul>
       </nav>
@@ -117,6 +122,7 @@
           <li class="listaItem"><a class="linkNav" href="">Ayuda</a></li>
           <li class="listaItem">
             <a
+              id="administradorPeliculas"
               class="linkNav administradorPeliculas"
               href="./admin/dashboard.html"
               >Administrador Peliculas</a
@@ -149,5 +155,6 @@
     </script>
     <!--script que trae peliculas de un servidor de tercero y crea cada pelicula en el dom-->
     <script src="./js/cargar_peliculas_index.js"></script>
+    <script src="./js/login.js"></script>
   </body>
 </html>

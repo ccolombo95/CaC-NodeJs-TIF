@@ -1,14 +1,10 @@
-const seconds = 60;
-const minutes = 60;
-const hours = 24;
-
 export const config = {
-  secretKey: "nikito",
+  secretKey: process.env.SECRET_KEY,
   token: {
-    expiresIn: `${hours}h`,
+    expiresIn: process.env.TOKEN_EXPIRATION,
   },
   cookie: {
-    maxAge: seconds * minutes * hours * 1000,
+    maxAge: parseInt(process.env.COOKIE_MAX_AGE, 10),
     httpOnly: true,
     signed: true,
   },
