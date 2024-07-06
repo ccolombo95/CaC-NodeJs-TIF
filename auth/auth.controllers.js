@@ -39,7 +39,7 @@ const register = (req, res) => {
         // .set('authorization', `Bearer ${token}`)
         // .cookie('token', token, config.cookie)
         .cookie("token", token, config.cookie)
-        .redirect("/")
+        .redirect("/pages/iniciosesion.html")
     : res.send("Algo salió mal. Vuelta atrás e inténtelo de nuevo.");
 };
 
@@ -110,7 +110,24 @@ const login = async (req, res) => {
   }
 };
 
+const logout = (req, res) => {
+  res.clearCookie("token");
+  return res.redirect("/");
+};
+
+const checkCookie = (req, res) => {
+  const token = req.cookies.token;
+
+  if (token) {
+    return res.json({ authenticated: true });
+  } else {
+    return res.json({ authenticated: false });
+  }
+};
+
 export const controllers = {
   register,
   login,
+  logout,
+  checkCookie,
 };

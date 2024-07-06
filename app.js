@@ -35,7 +35,7 @@ app.use("/categorizedMovies", categorizedMoviesRoutes);
 app.use("/auth", authRoutes);
 app.use("/users", usersRoutes);
 
-// app.use(middlewares.errors.errorController);
+app.use(middlewares.errors.errorController);
 
 app.listen(PORT, () => {
   console.clear();
