@@ -16,10 +16,16 @@ const getUserById = async (id) => {
   return result;
 };
 const getUserByEmail = async (email) => {
-  const query = `SELECT * FROM ${table} WHERE email="${email}"`;
-  const [result] = await connection.promise().query(query);
-  return result;
+  try {
+    const query = `SELECT email, password FROM users WHERE email="${email}" LIMIT 1`;
+    const [result] = await connection.promise().query(query);
+    return result[0]; // Devuelve el primer resultado encontrado
+  } catch (error) {
+    console.error(`Error in getUserByEmail: ${error.message}`);
+    throw error;
+  }
 };
+
 const createUser = async (user) => {
   const {
     name,

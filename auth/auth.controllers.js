@@ -43,32 +43,73 @@ const register = (req, res) => {
     : res.send("Algo salió mal. Vuelta atrás e inténtelo de nuevo.");
 };
 
-const login = (req, res) => {
+const login = async (req, res) => {
   const { email, password } = req.body;
 
-  // Buscamos usuarios
-  const user = usersDB.getUserByEmail(email);
+  console.log(
+    `Received login request with email: ${email} and password: ${password}`
+  );
 
-  if (!user)
-    return res.status(404).json({ error: true, desc: "User not Found" });
+  // Validar que email y password estén presentes
+  if (!email || !password) {
+    return res
+      .status(400)
+      .json({ error: true, desc: "Email and password are required" });
+  }
 
-  // Comprobamos la contraseña
-  const isValid = bcrypt.compareSync(password, user.password);
+  try {
+    // Buscamos el usuario en la base de datos
+    console.log(`Fetching user by email: ${email}`);
+    const user = await usersDB.getUserByEmail(email);
 
-  if (!isValid)
-    return res.status(404).json({ error: true, desc: "Invalid password" });
+    if (!user) {
+      console.log("User not found.");
+      return res.status(404).json({ error: true, desc: "User not found" });
+    }
 
-  const signature = config.secretKey;
-  const payload = { id: user.id, email: user.email };
+    console.log(`User found: ${JSON.stringify(user)}`);
 
-  const token = jwt.sign(payload, signature, config.token);
+    // Validar que user.password no esté undefined
+    if (!user.password) {
+      console.error("User password is undefined");
+      return res
+        .status(500)
+        .json({ error: true, desc: "Internal server error" });
+    }
+    if (!user.password) {
+      console.error("User password is undefined");
+      console.log(`Full user object: ${JSON.stringify(user)}`);
+      return res
+        .status(500)
+        .json({ error: true, desc: "Internal server error" });
+    }
 
-  res
-    .status(200)
-    // .set('authorization', `Bearer ${token}`)
-    .cookie("token", token, config.cookie)
-    .json({ message: "yass" });
+    // Comprobamos la contraseña
+    console.log(
+      `Comparing passwords: input ${password}, stored ${user.password}`
+    );
+    const isValid = bcrypt.compareSync(password, user.password);
+
+    if (!isValid) {
+      console.log("Invalid password.");
+      return res.status(401).json({ error: true, desc: "Invalid password" });
+    }
+
+    const signature = config.secretKey;
+    const payload = { id: user.id, email: user.email };
+
+    const token = jwt.sign(payload, signature, config.token);
+
+    res
+      .status(200)
+      .cookie("token", token, config.cookie)
+      .json({ message: "yass" });
+  } catch (error) {
+    console.error(`Error in login: ${error.message}`);
+    res.status(500).json({ error: true, desc: "Internal server error" });
+  }
 };
+
 export const controllers = {
   register,
   login,
