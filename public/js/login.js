@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     const response = await fetch(`./../auth/checkCookie`);
     const data = await response.json();
-    console.log(data);
 
     if (data.tokenValid === true) {
       document.getElementById("iniciarSesion").style.display = "none";

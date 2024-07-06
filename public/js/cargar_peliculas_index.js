@@ -135,6 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .then((res) => {
       categorizedMovies = res;
       cargarSliders();
+      console.log(categorizedMovies);
     })
     .catch((err) => console.log(err));
 });
