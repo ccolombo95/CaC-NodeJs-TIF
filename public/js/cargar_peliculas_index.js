@@ -1,6 +1,5 @@
 let moviesData = [];
 let categorizedMovies = [];
-
 const cargarPeliculas = (page = 1, filtro = "") => {
   const itemsPerPage = 10;
   const startIndex = (page - 1) * itemsPerPage;
