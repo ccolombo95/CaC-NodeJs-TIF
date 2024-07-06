@@ -1,7 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
-console.log("Variables de entorno cargadas:", process.env);
 
 import categoriesRoutes from "./categories/categories.routes.js";
 import categorizedMoviesRoutes from "./categorizedMovies/categorizedMovies.routes.js";

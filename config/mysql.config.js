@@ -7,4 +7,3 @@ export const config = {
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
 };
-console.log("Configuración de la base de datos:", config);

@@ -13,9 +13,13 @@ const getUserById = async (req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-  const { id } = req.params;
-  const result = await db.deleteUser(id);
-  res.json(result);
+  const result = await db.deleteUser(req.params.id);
+
+  res.json(
+    result
+      ? { error_code: 0, desc: "Película borrado correctamente" }
+      : { error_code: 3, error_desc: "Película inexistente" }
+  );
 };
 
 export const controllers = {

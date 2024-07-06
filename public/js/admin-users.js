@@ -33,21 +33,21 @@ fetch("./../users")
 usersTable.addEventListener("click", (event) => {
   if (event.target.classList.contains("delete")) {
     event.preventDefault();
-    const movieId = event.target.getAttribute("data-id");
+    const userId = event.target.getAttribute("data-id");
 
-    fetch(`./../users/${movieId}`, {
+    fetch(`./../users/${userId}`, {
       method: "DELETE",
     })
       .then((response) => {
         if (response.ok) {
           event.target.closest("tr").remove();
         } else {
-          alert("Error al eliminar la película.");
+          alert("Error al eliminar usuario");
         }
       })
       .catch((error) => {
         console.error("Error:", error);
-        alert("Error al eliminar la película.");
+        alert("Error al usuario");
       });
   }
 });

@@ -54,9 +54,9 @@ const createUser = async (user) => {
 };
 
 const deleteUser = async (id) => {
-  const query = `DELETE FROM ${table} WHERE id = ${id}`;
-  const [result] = await connection.promise().query(query);
-  return helpers.isSuccessfulOperation(result);
+  const query = `DELETE FROM users WHERE id = ?`;
+  const [result] = await connection.promise().query(query, [id]);
+  return result.affectedRows > 0;
 };
 
 export const db = {
