@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { middlewares } from "../middlewares/index.js";
-import { controllers } from "../categorizedMovies/categorizedMovies.controllers.js";
+import { controllers } from "./categorizedMovies.controllers.js";
 
 const router = Router();
 
