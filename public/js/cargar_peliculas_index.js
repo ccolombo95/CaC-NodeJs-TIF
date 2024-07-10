@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   //!Get de las peliculas para los sliders
-  fetch("./../categorizedMovies")
+  fetch("./../categorizedMovies/")
     .then((res) => res.json())
     .then((res) => {
       categorizedMovies = res;
