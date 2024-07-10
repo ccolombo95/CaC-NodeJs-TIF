@@ -18,8 +18,8 @@ const app = express();
 const PORT = process.env.PORT || 8080;
 app.use(
   cors({
-    methods: ["POST"],
-    origin: /http:\/\/localhost:*/,
+    methods: ["POST", "GET", "PUT", "DELETE"],
+    origin: /http:\/\/localhost:*\|https:\/\/ccolombo\.alwaysdata\.net/,
   })
 );
 app.use(cookieParser(authConfig.secretKey));
