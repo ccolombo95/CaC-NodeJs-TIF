@@ -1,7 +1,6 @@
 let moviesData = [];
-let categorizedMovies = [];
-console.log(categorizedMovies);
-// Función para cargar las películas en la página principal
+console.log("main.js cargado");
+
 const cargarPeliculas = (page = 1, filtro = "") => {
   console.log("Cargando películas con filtro:", filtro);
   const itemsPerPage = 12;
@@ -51,59 +50,6 @@ const cargarPeliculas = (page = 1, filtro = "") => {
   tendenciasContainer.parentElement.setAttribute("data-page", page);
 };
 
-// Función para cargar las películas en los sliders
-const cargarPeliculasSlider = (movies, category) => {
-  console.log(`Cargando slider para la categoría: ${category}`);
-  const categoryContainer = document.createElement("div");
-  categoryContainer.classList.add("aclamadas");
-
-  if (movies.length > 6) {
-    const titleCategory = document.createElement("h3");
-    titleCategory.classList.add("tituloSection");
-    titleCategory.textContent = `Películas de ${category}`;
-    aclamadasContainer.appendChild(titleCategory);
-
-    movies.forEach((movie) => {
-      const peliculaItem = document.createElement("div");
-      peliculaItem.classList.add("peliculaItem");
-
-      const img = document.createElement("img");
-      img.classList.add("imgAclamada");
-      img.src = `./..${movie.image_movie}`;
-      img.alt = movie.title_movie;
-      img.loading = "lazy";
-
-      peliculaItem.appendChild(img);
-      categoryContainer.appendChild(peliculaItem);
-      aclamadasContainer.appendChild(categoryContainer);
-    });
-  }
-};
-
-// Función para cargar todos los sliders
-const cargarSliders = () => {
-  console.log("Cargando todos los sliders");
-  categorizedMovies.forEach((category) => {
-    cargarPeliculasSlider(category.movies, category.category);
-  });
-};
-
-// Botones de navegación de las películas generales
-const botonAnterior = document.getElementById("botonAnterior");
-const botonSiguiente = document.getElementById("botonSiguiente");
-const seccionTendencias = document.getElementById("tendencias");
-
-botonAnterior.addEventListener("click", () => {
-  let currentPage = Number(seccionTendencias.getAttribute("data-page"));
-  if (currentPage <= 1) return;
-  cargarPeliculas(currentPage - 1);
-});
-
-botonSiguiente.addEventListener("click", () => {
-  let currentPage = Number(seccionTendencias.getAttribute("data-page"));
-  cargarPeliculas(currentPage + 1);
-});
-
 document.addEventListener("DOMContentLoaded", () => {
   console.log("Documento cargado");
 
@@ -133,23 +79,4 @@ document.addEventListener("DOMContentLoaded", () => {
       buscarPeliculas();
     }
   });
-
-  // Obtener películas para los sliders
-  fetch("./../categorizedMovies/")
-    .then((res) => {
-      if (!res.ok) {
-        throw new Error(
-          `Error al obtener películas categorizadas: ${res.statusText}`
-        );
-      }
-      return res.json();
-    })
-    .then((res) => {
-      console.log("Películas categorizadas obtenidas:", res);
-      categorizedMovies = res;
-      cargarSliders();
-    })
-    .catch((err) =>
-      console.log("Error al obtener películas categorizadas:", err)
-    );
 });
