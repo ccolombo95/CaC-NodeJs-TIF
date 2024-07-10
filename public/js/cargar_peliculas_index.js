@@ -136,7 +136,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Obtener películas para los sliders
   fetch("./../categorizedMovies/")
-    .then((res) => res.json())
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(
+          `Error al obtener películas categorizadas: ${res.statusText}`
+        );
+      }
+      return res.json();
+    })
     .then((res) => {
       console.log("Películas categorizadas obtenidas:", res);
       categorizedMovies = res;
