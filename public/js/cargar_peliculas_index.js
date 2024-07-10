@@ -1,6 +1,6 @@
 let moviesData = [];
 let categorizedMovies = [];
-
+console.log(categorizedMovies);
 // Función para cargar las películas en la página principal
 const cargarPeliculas = (page = 1, filtro = "") => {
   console.log("Cargando películas con filtro:", filtro);
