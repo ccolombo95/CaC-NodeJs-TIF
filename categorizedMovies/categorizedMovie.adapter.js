@@ -1,4 +1,4 @@
-import Category from "../models/CategorizedMovie.js";
+import Category from "./../models/CategorizedMovie.js";
 
 const categorizedMovieAdapter = (data) => {
   const { title, description } = data;

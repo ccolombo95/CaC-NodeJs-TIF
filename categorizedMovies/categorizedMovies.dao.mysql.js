@@ -1,5 +1,5 @@
 import mysql from "mysql2";
-import { config } from "../config/mysql.config.js";
+import { config } from "./../config/mysql.config.js";
 
 const connection = mysql.createConnection(config);
 
