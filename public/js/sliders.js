@@ -1,5 +1,5 @@
 let categorizedMovies = [];
-console.log(categorizedMovies);
+console.log("sliders.js cargado");
 
 const cargarPeliculasSlider = (movies, category) => {
   console.log(`Cargando slider para la categoría: ${category}`);
@@ -10,7 +10,7 @@ const cargarPeliculasSlider = (movies, category) => {
     const titleCategory = document.createElement("h3");
     titleCategory.classList.add("tituloSection");
     titleCategory.textContent = `Películas de ${category}`;
-    aclamadasContainer.appendChild(titleCategory);
+    document.getElementById("aclamadasContainer").appendChild(titleCategory);
 
     movies.forEach((movie) => {
       const peliculaItem = document.createElement("div");
@@ -24,8 +24,14 @@ const cargarPeliculasSlider = (movies, category) => {
 
       peliculaItem.appendChild(img);
       categoryContainer.appendChild(peliculaItem);
-      aclamadasContainer.appendChild(categoryContainer);
+      document
+        .getElementById("aclamadasContainer")
+        .appendChild(categoryContainer);
     });
+  } else {
+    console.log(
+      `No se cargó el slider para la categoría ${category} porque tiene menos de 7 películas`
+    );
   }
 };
 
@@ -54,7 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
       categorizedMovies = res;
       cargarSliders();
     })
-    .catch((err) =>
-      console.log("Error al obtener películas categorizadas:", err)
-    );
+    .catch((err) => {
+      console.error("Error al obtener películas categorizadas:", err);
+      console.log(
+        "Verifica la ruta y la disponibilidad del recurso en el servidor."
+      );
+    });
 });
