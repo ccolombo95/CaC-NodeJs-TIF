@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
   console.log("Documento cargado - sliders.js");
 
   // Obtener películas para los sliders
-  fetch("./../categorizedMovies/")
+  fetch("./../categorizedMovies")
     .then((res) => {
       if (!res.ok) {
         throw new Error(
