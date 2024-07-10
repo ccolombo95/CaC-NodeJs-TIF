@@ -53,6 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
           `Error al obtener películas categorizadas: ${res.statusText}`
         );
       }
+      console.log("Películas categorizadas obtenidas:", res);
       return res.json();
     })
     .then((res) => {
