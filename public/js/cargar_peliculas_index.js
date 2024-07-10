@@ -1,8 +1,6 @@
 let moviesData = [];
-console.log("main.js cargado");
 
 const cargarPeliculas = (page = 1, filtro = "") => {
-  console.log("Cargando películas con filtro:", filtro);
   const itemsPerPage = 12;
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -12,7 +10,6 @@ const cargarPeliculas = (page = 1, filtro = "") => {
   );
 
   const movies = filteredMovies.slice(startIndex, endIndex);
-  console.log("Películas filtradas:", movies);
 
   const tendenciasContainer = document.querySelector(
     ".peliculasTendencia .peliculas"
@@ -51,13 +48,10 @@ const cargarPeliculas = (page = 1, filtro = "") => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("Documento cargado");
-
   // Obtener películas
   fetch("./../movies")
     .then((res) => res.json())
     .then((res) => {
-      console.log("Películas obtenidas:", res);
       moviesData = res;
       cargarPeliculas();
     })
