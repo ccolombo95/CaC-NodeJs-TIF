@@ -1,5 +1,5 @@
 let categorizedMovies = [];
-console.log("sliders.js cargado");
+console.log(categorizedMovies);
 
 const cargarPeliculasSlider = (movies, category) => {
   console.log(`Cargando slider para la categoría: ${category}`);
