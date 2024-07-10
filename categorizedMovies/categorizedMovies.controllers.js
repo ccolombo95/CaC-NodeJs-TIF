@@ -1,5 +1,4 @@
 import { db } from "./categorizedMovies.dao.mysql.js";
-import { adapters } from "./categorizedMovie.adapter.js";
 
 const getCategorizedMovies = async (req, res) => {
   try {
