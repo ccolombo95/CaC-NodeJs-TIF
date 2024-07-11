@@ -36,13 +36,19 @@ const incomplete = (req, res) => {
 
 const updateMovie = async (req, res) => {
   const { id } = req.params;
+
+  // Obtener la imagen anterior desde localStorage si no se proporciona una nueva
+  if (!req.file && req.body.image) {
+    req.file = { filename: req.body.image.replace("/assets/img/", "") };
+  }
+
   const movie = adapters.movieAdapter(req.body, req.file);
   const result = await db.updateMovie(id, movie);
 
   res.json(
     result
-      ? { error_code: 0, desc: "Película modificado correctamente" }
-      : { error_code: 3, error_desc: "Pelicula inexistente" }
+      ? { error_code: 0, desc: "Película modificada correctamente" }
+      : { error_code: 3, error_desc: "Película inexistente" }
   );
 };
 

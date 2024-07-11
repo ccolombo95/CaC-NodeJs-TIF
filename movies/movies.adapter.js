@@ -1,7 +1,12 @@
 import Movie from "../models/Movie.js";
 
-const movieAdapter = (data, image = "") => {
-  if (image !== "") image = "/assets/img/" + image.filename;
+const movieAdapter = (data, file = null) => {
+  let image = "";
+  if (file && file.filename) {
+    image = "/assets/img/" + file.filename;
+  } else if (data.image) {
+    image = data.image;
+  }
 
   let {
     title,

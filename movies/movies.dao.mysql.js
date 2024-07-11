@@ -67,49 +67,20 @@ const createMovie = async (movie) => {
 };
 
 const updateMovie = async (id, movie) => {
-  const {
-    title,
-    description,
-    image,
-    duration,
-    date,
-    director,
-    director2,
-    writer,
-    id_category,
-    lenguage,
-    budget,
-    revenue,
-    youtube,
-    facebook,
-    instagram,
-    twitter,
-    web,
-  } = movie;
+  const fields = [];
+  const values = [];
 
-  const fields = [
-    title,
-    description,
-    image,
-    duration,
-    date,
-    director,
-    director2,
-    writer,
-    id_category,
-    lenguage,
-    budget,
-    revenue,
-    youtube,
-    facebook,
-    instagram,
-    twitter,
-    web,
-    id,
-  ];
+  for (const [key, value] of Object.entries(movie)) {
+    if (value !== "" && value !== null) {
+      fields.push(`${key}=?`);
+      values.push(value);
+    }
+  }
 
-  const query = `UPDATE movies SET title=?, description=?, image=?, duration=?, date=?, director=?, director2=?, writer=?, id_category=?, lenguage=?, budget=?, revenue=?, youtube=?, facebook=?, instagram=?, twitter=?, web=? WHERE id=?`;
-  const [result] = await connection.promise().query(query, fields);
+  values.push(id); // Añadir el id al final para la cláusula WHERE
+
+  const query = `UPDATE movies SET ${fields.join(", ")} WHERE id=?`;
+  const [result] = await connection.promise().query(query, values);
   return result.affectedRows > 0;
 };
 

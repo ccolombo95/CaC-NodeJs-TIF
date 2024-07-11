@@ -1,31 +1,42 @@
 let movie;
+let categories = [];
 
+//! FUNCION PARA MOSTRAR CATEGORIAS EN EL SELECT
+const showCategories = (categories) => {
+  const cateter = document.getElementById("category");
+  cateter.innerHTML = "";
+  for (let category of categories) {
+    const option = document.createElement("option");
+    option.value = `${category.id}`;
+    option.innerHTML = `${category.title}`;
+    cateter.append(option);
+  }
+  // Después de mostrar las categorías, selecciona la categoría de la película
+  if (movie) {
+    document.getElementById("category").value = movie.id_category || "";
+  }
+};
 //! Función para mostrar los datos en el formulario
 const mostrarDatos = () => {
   const formImage = document.getElementById("FormImage");
   const fileInput = document.getElementById("imagen_url");
-
   function updateImage(url) {
     formImage.style.backgroundImage = `url('${url}')`;
   }
 
   if (movie.image) {
     const imagenAnterior = movie.image;
-
     localStorage.setItem("imagenAnterior", imagenAnterior);
     updateImage(`./..${movie.image}`);
   }
 
   fileInput.addEventListener("change", (event) => {
     const file = event.target.files[0];
-
     if (file) {
       const reader = new FileReader();
-
       reader.onload = (e) => {
         updateImage(e.target.result);
       };
-
       reader.readAsDataURL(file);
     }
   });
@@ -37,7 +48,6 @@ const mostrarDatos = () => {
     document.getElementById("director2").value = movie.director2 || "";
     document.getElementById("writer").value = movie.writer || "";
     document.getElementById("description").value = movie.description || "";
-    document.getElementById("category").value = movie.id_category || "";
     document.getElementById("duration").value = movie.duration || "";
     document.getElementById("budget").value = movie.budget || "";
     document.getElementById("revenue").value = movie.revenue || "";
@@ -47,6 +57,11 @@ const mostrarDatos = () => {
     document.getElementById("instagram").value = movie.instagram || "";
     document.getElementById("twitter").value = movie.twitter || "";
     document.getElementById("web").value = movie.web || "";
+
+    // Actualiza la categoría en el select si las categorías ya han sido cargadas
+    if (categories.length > 0) {
+      document.getElementById("category").value = movie.id_category || "";
+    }
   } else {
     console.error("No movie data found in the response");
   }
@@ -56,12 +71,28 @@ document.addEventListener("DOMContentLoaded", () => {
   const urlParams = new URLSearchParams(window.location.search);
   const movieId = urlParams.get("id");
 
+  fetch("./../categories")
+    .then((res) => res.json())
+    .then((res) => {
+      categories = res;
+      if (categories.length === 0) {
+        console.log("vacio");
+      } else {
+        showCategories(categories);
+      }
+    })
+    .catch((err) => console.log(err));
+
   //! Obtener los datos de la película por ID
   fetch(`./../movies/movie/${movieId}`)
     .then((res) => res.json())
     .then((data) => {
       movie = data[0];
       mostrarDatos();
+      // Si las categorías ya han sido cargadas, selecciona la categoría correspondiente
+      if (categories.length > 0) {
+        document.getElementById("category").value = movie.id_category || "";
+      }
     })
     .catch((error) => {
       console.error("Error fetching movie data:", error);
@@ -69,10 +100,13 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 const updateButton = document.getElementById("ButtonAdmin");
+// En tu función modifyButtonHandleClick, añade el campo de imagen al body si no se selecciona una nueva
 const modifyButtonHandleClick = (e) => {
   e.preventDefault();
-  // Arma el body con los datos a modificar
+
   const imageInput = document.getElementById("imagen_url");
+  const imagePrevious = localStorage.getItem("imagenAnterior") || "";
+
   const body = {
     title: document.getElementById("title").value,
     description: document.getElementById("description").value,
@@ -91,22 +125,18 @@ const modifyButtonHandleClick = (e) => {
     instagram: document.getElementById("instagram").value,
     twitter: document.getElementById("twitter").value,
     web: document.getElementById("web").value,
+    image: imageInput.files.length === 0 ? imagePrevious : "", // Añadir imagen anterior si no hay nueva
   };
 
-  //! Arma el formData para ver si incluye la imagen o no
   const formData = new FormData();
   for (const key in body) {
     formData.append(key, body[key]);
   }
 
-  //! Si no ingresó nada en el input[type="file"], deja la imagen anterior
-  if (imageInput.files.length === 0) {
-    formData.append("image", localStorage.getItem("imagenAnterior"));
-  } else {
+  if (imageInput.files.length > 0) {
     formData.append("image", imageInput.files[0]);
   }
 
-  //! PUT para modificar los datos en la base de datos
   fetch(`./../movies/${movie.id}`, {
     method: "PUT",
     body: formData,
