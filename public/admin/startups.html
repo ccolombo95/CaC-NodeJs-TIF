@@ -10,7 +10,7 @@
     ></script>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
-    <title>Dashboard</title>
+    <title>Emprendimientos</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -22,7 +22,6 @@
     <header class="header">
       <nav class="navegacion">
         <a class="anclaLogo" href="/">
-          <i class="fas fa-film" aria-hidden="true"></i>
           <span>Amper</span>
         </a>
         <ul class="listaNav">
@@ -37,12 +36,36 @@
         </ul>
       </nav>
     </header>
-
     <div id="BodyContainerAdmin">
       <div class="BodyContainerSection">
-        <h1>Dashboard</h1>
+        <h1>Emprendimientos</h1>
+        <div id="TableFunctions">
+          <input type="text" placeholder="Buscar" id="buscador" />
+          <a href="./create-startup.html" class="button brown" id="ButtonAdmin"
+            >Nuevo</a
+          >
+        </div>
+
+        <table id="TableAdmin">
+          <thead id="header">
+            <tr>
+              <th>ID</th>
+              <th>Imagen</th>
+              <th>Empresa</th>
+              <th>Responsable</th>
+              <th>Descripción</th>
+              <th>Donaciones</th>
+            </tr>
+          </thead>
+          <tbody id="startups-table"></tbody>
+          <!-- Renamed table to movies-table -->
+        </table>
+
+        <div id="pagination-controls"></div>
       </div>
     </div>
     <script src="./../js/admin-main.js"></script>
+    <script src="./../js/admin-startups.js"></script>
+    <!-- Updated script name -->
   </body>
 </html>

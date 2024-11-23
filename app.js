@@ -2,9 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 dotenv.config();
 
-import categoriesRoutes from "./categories/categories.routes.js";
-import categorizedMoviesRoutes from "./categorizedMovies/categorizedMovies.routes.js";
-import moviesRoutes from "./movies/movies.routes.js";
+import startupsRoutes from "./startups/startups.routes.js";
 import { authRoutes, config as authConfig } from "./auth/index.js";
 import { usersRoutes } from "./users/index.js";
 
@@ -30,11 +28,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/users", usersRoutes);
-app.use("/categories", categoriesRoutes);
-app.use("/movies", moviesRoutes);
-app.use("/categorizedMovies", categorizedMoviesRoutes);
+app.use("/startups", startupsRoutes);
 app.use("/auth", authRoutes);
-app.use("/users", usersRoutes);
 
 app.use(middlewares.errors.errorController);
 

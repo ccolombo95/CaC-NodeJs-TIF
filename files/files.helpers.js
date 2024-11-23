@@ -7,15 +7,7 @@ const supportedTypes = [
 ];
 
 const checkSupportedTypes = (filetype) => {
-  let isSupported = false;
-
-  for (let supportedType of supportedTypes)
-    if (filetype === supportedType) {
-      isSupported = true;
-      break;
-    }
-
-  return isSupported;
+  return supportedTypes.includes(filetype);
 };
 
 export const helpers = {

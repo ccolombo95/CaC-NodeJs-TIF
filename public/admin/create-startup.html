@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./../css/style-admin.css" />
+    <script
+      src="https://kit.fontawesome.com/f7fb471b65.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <title>Agregar emprendimiento</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <nav class="navegacion">
+        <a class="anclaLogo" href="/">
+          <span>Amper</span>
+        </a>
+        <ul class="listaNav">
+          <li class="listaItem">
+            <a class="linkNav" href="./startups.html">Emprendimientos</a>
+          </li>
+          <li class="listaItem">
+            <a class="linkNav iniciarSesion" href="./../../auth/logout"
+              >Cerrar sesión</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div id="BodyContainerAdmin">
+      <div class="BodyContainerSection">
+        <h1>Agregar emprendimiento</h1>
+        <form
+          id="FormAdmin"
+          enctype="multipart/form-data"
+          action="./../startups"
+          method="POST"
+        >
+          <div
+            id="formImagenContainer"
+            class="FormImage banner"
+            style="
+            background-image: url(./../assets/imgfilled.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;"
+          >
+            <input
+              type="file"
+              accept="image/*"
+              class="imagen_url banner"
+              name="banner"
+            />
+          </div>
+          <div class="input-h">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Empresa"
+              required
+            />
+            <input
+              type="text"
+              id="slogan"
+              name="slogan"
+              placeholder="Eslogan"
+              required
+            />
+          </div>
+          <input
+            type="text"
+            id="description"
+            name="description"
+            placeholder="Descripción"
+          />
+
+          <input
+            type="text"
+            id="facebook"
+            name="facebook"
+            placeholder="Link de facebook"
+          />
+          <input
+            type="text"
+            id="instagram"
+            name="instagram"
+            placeholder="Link de instagram"
+          />
+          <input
+            type="text"
+            id="website"
+            name="website"
+            placeholder="Link de sitio web"
+          />
+          <input
+            type="text"
+            id="owner"
+            name="owner"
+            placeholder="Responsable"
+            required
+          />
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            placeholder="Mail de responsable"
+            required
+          />
+          <input
+            type="text"
+            id="mail"
+            name="mail"
+            placeholder="Mail de responsable"
+            required
+          />
+
+          <div id="ImagenGroup">
+            <textarea
+              name="text1"
+              id="text1"
+              cols="30"
+              rows="5"
+              placeholder="Primer texto"
+            ></textarea>
+            <div
+              id="formImagenContainer"
+              class="FormImage"
+              style="
+              background-image: url(./../assets/imgfilled.jpg);
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;"
+            >
+              <input
+                type="file"
+                accept="image/*"
+                class="imagen_url"
+                name="photo1"
+              />
+            </div>
+          </div>
+          <div id="ImagenGroup">
+            <div
+              id="formImagenContainer"
+              class="FormImage"
+              style="
+              background-image: url(./../assets/imgfilled.jpg);
+              background-size: cover;
+              background-position: center;
+              background-repeat: no-repeat;"
+            >
+              <input
+                type="file"
+                accept="image/*"
+                class="imagen_url"
+                name="photo2"
+              />
+            </div>
+            <textarea
+              name="text2"
+              id="text2"
+              cols="30"
+              rows="5"
+              placeholder="Segundo texto"
+            ></textarea>
+          </div>
+          <textarea
+            name="text3"
+            id="text3"
+            cols="30"
+            rows="5"
+            class="text3"
+            placeholder="Tercer texto"
+          ></textarea>
+
+          <button id="ButtonAdmin">Agregar</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="./../js/admin-main.js"></script>
+    <script src="./../js/admin-create-startup.js"></script>
+  </body>
+</html>
