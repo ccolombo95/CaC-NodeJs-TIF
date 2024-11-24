@@ -10,7 +10,7 @@
     ></script>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
-    <title>Dashboard</title>
+    <title>Crear categoría</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -43,10 +43,29 @@
         </ul>
       </nav>
     </header>
-
     <div id="BodyContainerAdmin">
       <div class="BodyContainerSection">
-        <h1>Dashboard</h1>
+        <h1>Crear categoría</h1>
+        <form id="FormAdmin" action="./../categories" method="POST">
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Título de categoria"
+            required
+          />
+
+          <div id="ImagenGroup" style="width:100%;">
+            <textarea
+              name="description"
+              id="description"
+              rows="7"
+              placeholder="Descripción"
+            ></textarea>
+          </div>
+
+          <button id="ButtonAdmin">Agregar</button>
+        </form>
       </div>
     </div>
     <script src="./../js/admin-main.js"></script>

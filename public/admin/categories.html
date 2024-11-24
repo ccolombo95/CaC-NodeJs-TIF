@@ -10,7 +10,7 @@
     ></script>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
-    <title>Dashboard</title>
+    <title>Categorías</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -43,12 +43,32 @@
         </ul>
       </nav>
     </header>
-
     <div id="BodyContainerAdmin">
       <div class="BodyContainerSection">
-        <h1>Dashboard</h1>
+        <h1>Categorías</h1>
+        <div id="TableFunctions">
+          <input
+            type="text"
+            placeholder="Buscar"
+            id="buscador"
+            onkeyup="buscarCandidatos()"
+          />
+          <a href="./create-category.html" id="ButtonAdmin">Nuevo</a>
+        </div>
+
+        <table id="TableAdmin">
+          <thead id="header">
+            <tr>
+              <th>Categoria</th>
+              <th>Cantidad películas</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody id="category-table"></tbody>
+        </table>
       </div>
     </div>
     <script src="./../js/admin-main.js"></script>
+    <script src="./../js/admin-categories.js"></script>
   </body>
 </html>

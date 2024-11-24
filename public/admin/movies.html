@@ -10,7 +10,7 @@
     ></script>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
 
-    <title>Dashboard</title>
+    <title>Películas</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -43,12 +43,34 @@
         </ul>
       </nav>
     </header>
-
     <div id="BodyContainerAdmin">
       <div class="BodyContainerSection">
-        <h1>Dashboard</h1>
+        <h1>Películas</h1>
+        <div id="TableFunctions">
+          <input type="text" placeholder="Buscar" id="buscador" />
+          <a href="./create-movie.html" class="button brown" id="ButtonAdmin"
+            >Nuevo</a
+          >
+        </div>
+
+        <table id="TableAdmin">
+          <thead id="header">
+            <tr>
+              <th>ID</th>
+              <th>Imagen</th>
+              <th>Título</th>
+              <th>Director</th>
+              <th>Director</th>
+              <th>Escritor</th>
+            </tr>
+          </thead>
+          <tbody id="movies-table"></tbody>
+        </table>
+
+        <div id="pagination-controls"></div>
       </div>
     </div>
     <script src="./../js/admin-main.js"></script>
+    <script src="./../js/admin-movies.js"></script>
   </body>
 </html>

@@ -17,8 +17,8 @@ const deleteUser = async (req, res) => {
 
   res.json(
     result
-      ? { error_code: 0, desc: "emprendimientoborrado correctamente" }
-      : { error_code: 3, error_desc: "emprendimientoinexistente" }
+      ? { error_code: 0, desc: "Película borrado correctamente" }
+      : { error_code: 3, error_desc: "Película inexistente" }
   );
 };
 
